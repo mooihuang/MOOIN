@@ -131,13 +131,13 @@
       position:absolute; left:50%; bottom:-34px; transform:translateX(-50%);
       font-size:.68rem; white-space:nowrap; color:var(--secondary); opacity:0; transition:.3s ease;
     }
-    .cta:hover{ transform:translateY(-2px); box-shadow:0 12px 40px rgba(94,234,212,.35); border-color:rgba(94,234,212,.95); }
+    .cta:hover{ transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,180,176,.25); border-color:rgba(0,180,176,.95); }
     .cta:hover::after{ bottom:7px; opacity:1; }
     .cta span{ transition:transform .3s ease; display:inline-block; }
     .cta:hover span{ transform:translateY(-7px); }
 
     .case-index{
-      font-size:clamp(3rem,6vw,6rem); line-height:1; color:rgba(37,99,235,.12);
+      font-size:clamp(3rem,6vw,6rem); line-height:1; color:rgba(0,119,200,.12);
       font-weight:800; letter-spacing:-.06em;
     }
     .pill{
@@ -170,13 +170,13 @@
       <nav class="mt-4 rounded-2xl px-5 py-3 flex items-center justify-between glass shadow-glass">
         <a href="#home" class="font-extrabold tracking-tight text-lg">IWEN<span class="text-[var(--primary)]">.</span></a>
 
-        <div class="hidden lg:flex items-center gap-7 text-sm text-slate-600">
-          <a class="hover:text-slate-950 transition" href="#about">About</a>
-          <a class="hover:text-slate-950 transition" href="#why">Why Iwen</a>
-          <a class="hover:text-slate-950 transition" href="#services">Services</a>
-          <a class="hover:text-slate-950 transition" href="#impact">Impact</a>
-          <a class="hover:text-slate-950 transition" href="#process">Approach</a>
-          <a class="hover:text-slate-950 transition" href="#contact">Contact</a>
+        <div class="hidden lg:flex items-center gap-7 text-sm text-[var(--muted)]">
+          <a class="hover:text-[var(--ink)] transition" href="#about">About</a>
+          <a class="hover:text-[var(--ink)] transition" href="#why">Why Iwen</a>
+          <a class="hover:text-[var(--ink)] transition" href="#services">Services</a>
+          <a class="hover:text-[var(--ink)] transition" href="#impact">Impact</a>
+          <a class="hover:text-[var(--ink)] transition" href="#process">Approach</a>
+          <a class="hover:text-[var(--ink)] transition" href="#contact">Contact</a>
         </div>
 
         <div class="hidden md:flex items-center gap-3">
@@ -222,8 +222,8 @@
             </h1>
           </div>
           <div class="lg:col-span-2 lg:text-right reveal">
-            <div class="text-[11px] tracking-[.2em] uppercase text-slate-400">20+ Years</div>
-            <div class="mt-2 text-sm leading-6 text-slate-600">Technology ×<br>Marketing × Business</div>
+            <div class="text-[11px] tracking-[.2em] uppercase text-[var(--muted)]">20+ Years</div>
+            <div class="mt-2 text-sm leading-6 text-[var(--muted)]">Technology ×<br>Marketing × Business</div>
           </div>
         </div>
 
@@ -236,13 +236,13 @@
               把創意變策略，<br>
               把策略變成影響力。
             </p>
-            <div class="mt-7 text-lg md:text-xl text-slate-500 min-h-[64px]">
+            <div class="mt-7 text-lg md:text-xl text-[var(--muted)] min-h-[64px]">
               <span id="typewriter"></span><span class="animate-pulse">|</span>
             </div>
           </div>
 
           <div class="lg:col-span-5 lg:pl-10 reveal">
-            <p class="text-base md:text-lg leading-8 text-slate-600 max-w-xl">
+            <p class="text-base md:text-lg leading-8 text-[var(--muted)] max-w-xl">
               20+ years across technology, branding, digital transformation and strategic execution —
               now helping organizations turn AI into real business impact.
             </p>
@@ -273,14 +273,14 @@
         <div class="grid lg:grid-cols-12 gap-10">
           <div class="lg:col-span-4 reveal">
             <p class="eyebrow">About Iwen</p>
-            <div class="mt-6 text-sm text-slate-400">Technology × Logic<br>Creativity × Humanity</div>
+            <div class="mt-6 text-sm text-[var(--muted)]">Technology × Logic<br>Creativity × Humanity</div>
           </div>
           <div class="lg:col-span-8 reveal">
             <h2 class="section-title font-extrabold">從科技出發，<br><span class="gradient-text">用品牌與 AI 創造影響力</span></h2>
-            <div class="mt-10 max-w-4xl space-y-6 text-lg md:text-xl leading-9 text-slate-600">
+            <div class="mt-10 max-w-4xl space-y-6 text-lg md:text-xl leading-9 text-[var(--muted)]">
               <p>我是 Iwen｜MOOIN 創新企業社顧問，擁有超過 20 年科技產業、品牌行銷、數位轉型與專案管理經驗。</p>
               <p>我擁有資訊工程背景，同時取得英國 Liverpool John Moores University 多媒體藝術碩士。一邊是科技與邏輯，一邊是創意與人文，也因此形成我多年來最重要的專業特色：</p>
-              <blockquote class="font-serif text-3xl md:text-5xl text-slate-900 leading-tight py-4">
+              <blockquote class="font-serif text-3xl md:text-5xl text-[var(--ink)] leading-tight py-4">
                 「我喜歡站在科技與人的中間，讓複雜的事情變得容易理解。」
               </blockquote>
               <p>多年職涯橫跨 B2B／B2G、AI、IoT／IoV、5G、電子商務、數位行銷與教育推廣，並從 Brand Strategy、Global Marketing、GTM，延伸至大型科技專案與跨國團隊協作。</p>
@@ -289,33 +289,67 @@
         </div>
 
         <div class="mt-16 grid md:grid-cols-3 gap-4 reveal">
-          <div class="card rounded-3xl border border-slate-200 p-7 bg-white/70">
-            <div class="text-sm text-slate-400">20+ YEARS</div>
+          <div class="card rounded-3xl border border-[var(--line)] p-7 bg-white/70">
+            <div class="text-sm text-[var(--muted)]">20+ YEARS</div>
             <h3 class="text-2xl font-bold mt-3">Technology × Marketing × Business</h3>
-            <p class="mt-4 text-slate-600 leading-7">從全球數位行銷、品牌重塑與國際市場，走向 AI、智慧科技與複雜專案整合。</p>
+            <p class="mt-4 text-[var(--muted)] leading-7">從全球數位行銷、品牌重塑與國際市場，走向 AI、智慧科技與複雜專案整合。</p>
           </div>
-          <div class="card rounded-3xl border border-slate-200 p-7 bg-white/70">
-            <div class="text-sm text-slate-400">FROM MARKETING TO AI</div>
+          <div class="card rounded-3xl border border-[var(--line)] p-7 bg-white/70">
+            <div class="text-sm text-[var(--muted)]">FROM MARKETING TO AI</div>
             <h3 class="text-2xl font-bold mt-3">讓 AI 進入真實工作場景</h3>
-            <p class="mt-4 text-slate-600 leading-7">關注的不只是工具，而是如何讓 AI 解決問題、提升效率並創造新的可能性。</p>
+            <p class="mt-4 text-[var(--muted)] leading-7">關注的不只是工具，而是如何讓 AI 解決問題、提升效率並創造新的可能性。</p>
           </div>
-          <div class="card rounded-3xl border border-slate-200 p-7 bg-white/70">
-            <div class="text-sm text-slate-400">KNOWLEDGE × PRACTICE</div>
+          <div class="card rounded-3xl border border-[var(--line)] p-7 bg-white/70">
+            <div class="text-sm text-[var(--muted)]">KNOWLEDGE × PRACTICE</div>
             <h3 class="text-2xl font-bold mt-3">把經驗轉化成可使用的知識</h3>
-            <p class="mt-4 text-slate-600 leading-7">持續投入品牌、數位行銷、電子商務與生成式 AI 的教學、產學合作與實作型培訓。</p>
+            <p class="mt-4 text-[var(--muted)] leading-7">持續投入品牌、數位行銷、電子商務與生成式 AI 的教學、產學合作與實作型培訓。</p>
+          </div>
+        </div>
+
+        <div class="mt-20 rounded-[2.5rem] border border-[var(--line)] bg-[var(--surface)]/90 p-8 lg:p-12 shadow-soft reveal">
+          <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+            <div class="space-y-6">
+              <p class="eyebrow !text-[var(--accent)]">My Journey</p>
+              <h3 class="text-3xl font-extrabold">從青澀 18 歲到展場策展，這是我的早期現場</h3>
+              <p class="text-[var(--muted)] leading-8">在我成長的路上，展演與策展不只是作品展示，更是一種場域思考與觀眾溝通的實驗。這裡放入我的早期紀錄，呈現我的真實經驗與在場態度。</p>
+
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-3xl overflow-hidden border border-[var(--line)] bg-white">
+                  <img src="mywork/iwen-18yrs.png" alt="Iwen at 18 years old" class="w-full h-full object-cover" />
+                </div>
+                <div class="rounded-3xl border border-[var(--line)] bg-white p-5">
+                  <div class="text-sm font-semibold text-[var(--accent)]">Iwen at 18</div>
+                  <p class="mt-3 text-[var(--muted)] leading-7">這張照片紀錄了我年輕時的自己，象徵我從創意實驗、展演與跨域探索開始的旅程。</p>
+                  <div class="mt-5 rounded-3xl bg-[var(--primary)]/10 p-4 text-sm text-[var(--ink)]">位置：mywork/iwen-18yrs.png</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid gap-5">
+              <article class="rounded-[2rem] overflow-hidden border border-[var(--line)] bg-white shadow-sm">
+                <div class="aspect-[4/3] bg-[#f5f8fb] overflow-hidden">
+                  <img src="mywork/iwen-002.jpg" alt="Iwen exhibition scene" class="w-full h-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="text-sm font-semibold text-[var(--accent)]">參展現場</div>
+                  <p class="mt-3 text-[var(--muted)] leading-7">iwen-002 是我在展覽現場的紀錄照片，展示了我與現場觀眾、作品空間之間的互動。</p>
+                </div>
+              </article>
+
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- BELIEF -->
-    <section class="py-24 md:py-40 bg-slate-950 text-white relative overflow-hidden">
-      <div class="absolute inset-0 opacity-40" style="background:radial-gradient(circle at 15% 0%, rgba(56,189,248,.28), transparent 30%),radial-gradient(circle at 90% 70%, rgba(139,92,246,.22), transparent 30%);"></div>
+    <section class="py-24 md:py-40 bg-[var(--ink)] text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background:radial-gradient(circle at 15% 0%, rgba(0,119,200,.28), transparent 30%),radial-gradient(circle at 90% 70%, rgba(122,62,200,.22), transparent 30%);"></div>
       <div class="relative max-w-[1440px] mx-auto px-5 md:px-8">
-        <p class="eyebrow !text-sky-200 reveal">My Belief</p>
+        <p class="eyebrow !text-[var(--accent)] reveal">My Belief</p>
         <h2 class="section-title font-serif mt-6 max-w-5xl reveal">創新，不是追逐工具，<br>而是重新定義問題。</h2>
         <div class="mt-12 grid lg:grid-cols-12 gap-8">
-          <p class="lg:col-span-7 text-lg md:text-xl leading-9 text-slate-300 reveal">
+          <p class="lg:col-span-7 text-lg md:text-xl leading-9 text-[var(--surface)] reveal">
             真正有價值的專業，不是「知道最多」，而是能夠在複雜環境中快速找到問題核心，並整合不同的人、資源與方法，把一個想法真正變成成果。
           </p>
           <div class="lg:col-span-5 space-y-3 reveal">
@@ -333,29 +367,29 @@
         <p class="eyebrow reveal">Why Iwen</p>
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mt-5">
           <h2 class="section-title font-extrabold reveal">跨域整合，<br><span class="gradient-text">是我最大的差異。</span></h2>
-          <p class="max-w-xl text-slate-600 text-lg leading-8 reveal">不是單一的行銷、科技或 AI，而是站在三者交會點，讓技術能被理解、策略能被執行、價值能被市場感受到。</p>
+          <p class="max-w-xl text-[var(--muted)] text-lg leading-8 reveal">不是單一的行銷、科技或 AI，而是站在三者交會點，讓技術能被理解、策略能被執行、價值能被市場感受到。</p>
         </div>
 
         <div class="mt-14 grid md:grid-cols-2 gap-4">
-          <article class="card rounded-3xl border border-slate-200 p-8 md:p-10 bg-white/70 reveal">
-            <div class="text-xs tracking-[.2em] text-slate-400">01</div>
+          <article class="card rounded-3xl border border-[var(--line)] p-8 md:p-10 bg-white/70 reveal">
+            <div class="text-xs tracking-[.2em] text-[var(--muted)]">01</div>
             <h3 class="text-3xl font-bold mt-10">20+ Years of Real-World Experience</h3>
-            <p class="mt-4 text-slate-600 leading-8">從企業真實市場、專案與組織問題出發，不讓顧問建議停留在理論。</p>
+            <p class="mt-4 text-[var(--muted)] leading-8">從企業真實市場、專案與組織問題出發，不讓顧問建議停留在理論。</p>
           </article>
-          <article class="card rounded-3xl border border-slate-200 p-8 md:p-10 bg-white/70 reveal">
-            <div class="text-xs tracking-[.2em] text-slate-400">02</div>
+          <article class="card rounded-3xl border border-[var(--line)] p-8 md:p-10 bg-white/70 reveal">
+            <div class="text-xs tracking-[.2em] text-[var(--muted)]">02</div>
             <h3 class="text-3xl font-bold mt-10">Technology × Business</h3>
-            <p class="mt-4 text-slate-600 leading-8">資訊工程背景 × 品牌與國際行銷經驗，能在工程、行銷、業務與決策者之間有效溝通。</p>
+            <p class="mt-4 text-[var(--muted)] leading-8">資訊工程背景 × 品牌與國際行銷經驗，能在工程、行銷、業務與決策者之間有效溝通。</p>
           </article>
-          <article class="card rounded-3xl border border-slate-200 p-8 md:p-10 bg-white/70 reveal">
-            <div class="text-xs tracking-[.2em] text-slate-400">03</div>
+          <article class="card rounded-3xl border border-[var(--line)] p-8 md:p-10 bg-white/70 reveal">
+            <div class="text-xs tracking-[.2em] text-[var(--muted)]">03</div>
             <h3 class="text-3xl font-bold mt-10">Strategy to Execution</h3>
-            <p class="mt-4 text-slate-600 leading-8">從 Vision、Strategy、Planning 到 Execution、Project Management 與 Results，讓策略不只留在簡報裡。</p>
+            <p class="mt-4 text-[var(--muted)] leading-8">從 Vision、Strategy、Planning 到 Execution、Project Management 與 Results，讓策略不只留在簡報裡。</p>
           </article>
-          <article class="card rounded-3xl border border-slate-200 p-8 md:p-10 bg-white/70 reveal">
-            <div class="text-xs tracking-[.2em] text-slate-400">04</div>
+          <article class="card rounded-3xl border border-[var(--line)] p-8 md:p-10 bg-white/70 reveal">
+            <div class="text-xs tracking-[.2em] text-[var(--muted)]">04</div>
             <h3 class="text-3xl font-bold mt-10">AI × Business</h3>
-            <p class="mt-4 text-slate-600 leading-8">真正的問題不是「怎麼用 ChatGPT」，而是「AI 到底能替企業解決什麼問題？」</p>
+            <p class="mt-4 text-[var(--muted)] leading-8">真正的問題不是「怎麼用 ChatGPT」，而是「AI 到底能替企業解決什麼問題？」</p>
           </article>
         </div>
       </div>
@@ -370,10 +404,10 @@
             <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-5">陪伴正在轉型與成長的企業與組織。</h2>
           </div>
           <div class="lg:col-span-8 grid sm:grid-cols-2 gap-3 reveal">
-            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Technology</div><h3 class="text-xl font-bold mt-3">B2B / B2G Technology Companies</h3><p class="mt-2 text-slate-500">品牌、市場、GTM 與商業化策略。</p></div>
-            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Business</div><h3 class="text-xl font-bold mt-3">SMEs & Growth Brands</h3><p class="mt-2 text-slate-500">品牌定位、數位行銷與市場競爭力。</p></div>
-            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Teams</div><h3 class="text-xl font-bold mt-3">Marketing & Management Teams</h3><p class="mt-2 text-slate-500">AI 研究、企劃、內容與決策效率。</p></div>
-            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Education</div><h3 class="text-xl font-bold mt-3">Universities / Foundations / NPO</h3><p class="mt-2 text-slate-500">AI 教學、人才培育與組織影響力。</p></div>
+            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Technology</div><h3 class="text-xl font-bold mt-3">B2B / B2G Technology Companies</h3><p class="mt-2 text-[var(--muted)]">品牌、市場、GTM 與商業化策略。</p></div>
+            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Business</div><h3 class="text-xl font-bold mt-3">SMEs & Growth Brands</h3><p class="mt-2 text-[var(--muted)]">品牌定位、數位行銷與市場競爭力。</p></div>
+            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Teams</div><h3 class="text-xl font-bold mt-3">Marketing & Management Teams</h3><p class="mt-2 text-[var(--muted)]">AI 研究、企劃、內容與決策效率。</p></div>
+            <div class="card rounded-2xl border border-[var(--line)] p-6 bg-white"><div class="eyebrow !text-[10px]">Education</div><h3 class="text-xl font-bold mt-3">Universities / Foundations / NPO</h3><p class="mt-2 text-[var(--muted)]">AI 教學、人才培育與組織影響力。</p></div>
           </div>
         </div>
       </div>
@@ -386,18 +420,18 @@
         <h2 class="section-title font-extrabold mt-5 max-w-5xl reveal">From knowing you need to change<br><span class="gradient-text">to knowing what to do next.</span></h2>
 
         <div class="mt-16 divide-y divide-[var(--line)] border-y border-[var(--line)] reveal">
-          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-slate-400">01</div><div class="md:col-span-5 text-2xl font-bold">Great technology. Unclear value.</div><div class="md:col-span-6 text-slate-500">有技術，卻說不清楚差異與客戶價值。</div></div>
-          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-slate-400">02</div><div class="md:col-span-5 text-2xl font-bold">Lots of marketing. No real brand.</div><div class="md:col-span-6 text-slate-500">內容、網站、展會都做了，卻缺乏一致策略。</div></div>
-          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-slate-400">03</div><div class="md:col-span-5 text-2xl font-bold">Want AI. Don’t know where to start.</div><div class="md:col-span-6 text-slate-500">工具很多，但沒有真正符合工作需求的應用場景。</div></div>
-          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-slate-400">04</div><div class="md:col-span-5 text-2xl font-bold">Strong vision. Weak execution.</div><div class="md:col-span-6 text-slate-500">策略很漂亮，但跨部門與資源整合無法落地。</div></div>
-          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-slate-400">05</div><div class="md:col-span-5 text-2xl font-bold">Too much information. Too little action.</div><div class="md:col-span-6 text-slate-500">需要把 Technology、Business、Marketing 串成執行路徑。</div></div>
+          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-[var(--muted)]">01</div><div class="md:col-span-5 text-2xl font-bold">Great technology. Unclear value.</div><div class="md:col-span-6 text-[var(--muted)]">有技術，卻說不清楚差異與客戶價值。</div></div>
+          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-[var(--muted)]">02</div><div class="md:col-span-5 text-2xl font-bold">Lots of marketing. No real brand.</div><div class="md:col-span-6 text-[var(--muted)]">內容、網站、展會都做了，卻缺乏一致策略。</div></div>
+          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-[var(--muted)]">03</div><div class="md:col-span-5 text-2xl font-bold">Want AI. Don’t know where to start.</div><div class="md:col-span-6 text-[var(--muted)]">工具很多，但沒有真正符合工作需求的應用場景。</div></div>
+          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-[var(--muted)]">04</div><div class="md:col-span-5 text-2xl font-bold">Strong vision. Weak execution.</div><div class="md:col-span-6 text-[var(--muted)]">策略很漂亮，但跨部門與資源整合無法落地。</div></div>
+          <div class="grid md:grid-cols-12 gap-5 py-7"><div class="md:col-span-1 text-[var(--muted)]">05</div><div class="md:col-span-5 text-2xl font-bold">Too much information. Too little action.</div><div class="md:col-span-6 text-[var(--muted)]">需要把 Technology、Business、Marketing 串成執行路徑。</div></div>
         </div>
 
         <div class="mt-12 flex flex-wrap items-center gap-3 text-sm font-semibold reveal">
-          <span class="pill rounded-full px-4 py-2">Clarify</span><span class="text-slate-300">→</span>
-          <span class="pill rounded-full px-4 py-2">Strategize</span><span class="text-slate-300">→</span>
-          <span class="pill rounded-full px-4 py-2">Integrate</span><span class="text-slate-300">→</span>
-          <span class="pill rounded-full px-4 py-2">Enable</span><span class="text-slate-300">→</span>
+          <span class="pill rounded-full px-4 py-2">Clarify</span><span class="text-[var(--muted)]">→</span>
+          <span class="pill rounded-full px-4 py-2">Strategize</span><span class="text-[var(--muted)]">→</span>
+          <span class="pill rounded-full px-4 py-2">Integrate</span><span class="text-[var(--muted)]">→</span>
+          <span class="pill rounded-full px-4 py-2">Enable</span><span class="text-[var(--muted)]">→</span>
           <span class="pill rounded-full px-4 py-2">Execute</span>
         </div>
       </div>
@@ -412,32 +446,32 @@
         <div class="mt-14 grid lg:grid-cols-3 gap-4">
           <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
             <div class="text-sm text-[var(--primary)]">01</div><h3 class="text-2xl font-bold mt-8">Brand Strategy & Positioning</h3>
-            <p class="mt-3 text-slate-500">讓好的產品，被市場真正理解。</p>
-            <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>Brand Positioning</li><li>Value Proposition</li><li>Brand Story & Messaging</li><li>Rebranding</li><li>B2B / B2G Brand Strategy</li></ul>
+            <p class="mt-3 text-[var(--muted)]">讓好的產品，被市場真正理解。</p>
+            <ul class="mt-6 space-y-2 text-sm text-[var(--muted)]"><li>Brand Positioning</li><li>Value Proposition</li><li>Brand Story & Messaging</li><li>Rebranding</li><li>B2B / B2G Brand Strategy</li></ul>
           </article>
           <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
             <div class="text-sm text-[var(--primary)]">02</div><h3 class="text-2xl font-bold mt-8">Go-to-Market & Integrated Marketing</h3>
-            <p class="mt-3 text-slate-500">讓策略不只被看見，更能走進市場。</p>
-            <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>GTM Strategy</li><li>Market & Persona</li><li>Customer Journey</li><li>SEO / SEM</li><li>Content & Lead Generation</li></ul>
+            <p class="mt-3 text-[var(--muted)]">讓策略不只被看見，更能走進市場。</p>
+            <ul class="mt-6 space-y-2 text-sm text-[var(--muted)]"><li>GTM Strategy</li><li>Market & Persona</li><li>Customer Journey</li><li>SEO / SEM</li><li>Content & Lead Generation</li></ul>
           </article>
           <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
             <div class="text-sm text-[var(--primary)]">03</div><h3 class="text-2xl font-bold mt-8">Generative AI Consulting</h3>
-            <p class="mt-3 text-slate-500">從「會用 AI」走向「用 AI 改變工作」。</p>
-            <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>AI Use Case Discovery</li><li>Generative AI Workflow</li><li>Prompt Strategy</li><li>AI Research</li><li>Knowledge Management</li></ul>
+            <p class="mt-3 text-[var(--muted)]">從「會用 AI」走向「用 AI 改變工作」。</p>
+            <ul class="mt-6 space-y-2 text-sm text-[var(--muted)]"><li>AI Use Case Discovery</li><li>Generative AI Workflow</li><li>Prompt Strategy</li><li>AI Research</li><li>Knowledge Management</li></ul>
           </article>
           <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
             <div class="text-sm text-[var(--accent)]">04</div><h3 class="text-2xl font-bold mt-8">AI-Powered Branding & Content</h3>
-            <p class="mt-3 text-slate-500">Human Creativity × AI Efficiency</p>
-            <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>AI Brand Content Strategy</li><li>AI Copy & Visual Planning</li><li>AI Social Content</li><li>AI Campaign</li><li>AI Landing Page</li></ul>
+            <p class="mt-3 text-[var(--muted)]">Human Creativity × AI Efficiency</p>
+            <ul class="mt-6 space-y-2 text-sm text-[var(--muted)]"><li>AI Brand Content Strategy</li><li>AI Copy & Visual Planning</li><li>AI Social Content</li><li>AI Campaign</li><li>AI Landing Page</li></ul>
           </article>
-          <article class="card rounded-3xl border border-slate-200 p-7 bg-white reveal">
-            <div class="text-sm text-violet-600">05</div><h3 class="text-2xl font-bold mt-8">AI Training & Workshops</h3>
-            <p class="mt-3 text-slate-500">不只是聽懂，而是 Learn → Practice → Apply。</p>
+          <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
+            <div class="text-sm text-[var(--accent)]">05</div><h3 class="text-2xl font-bold mt-8">AI Training & Workshops</h3>
+            <p class="mt-3 text-[var(--muted)]">不只是聽懂，而是 Learn → Practice → Apply。</p>
             <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>Generative AI</li><li>ChatGPT Productivity</li><li>Prompt Engineering</li><li>AI × Marketing / Brand</li><li>AI Workflow Design</li></ul>
           </article>
-          <article class="card rounded-3xl border border-slate-200 p-7 bg-white reveal">
-            <div class="text-sm text-violet-600">06</div><h3 class="text-2xl font-bold mt-8">Strategic Project Consulting</h3>
-            <p class="mt-3 text-slate-500">協助複雜專案從 Vision 走向 Execution。</p>
+          <article class="card rounded-3xl border border-[var(--line)] p-7 bg-white reveal">
+            <div class="text-sm text-[var(--accent)]">06</div><h3 class="text-2xl font-bold mt-8">Strategic Project Consulting</h3>
+            <p class="mt-3 text-[var(--muted)]">協助複雜專案從 Vision 走向 Execution。</p>
             <ul class="mt-6 space-y-2 text-sm text-slate-600"><li>Strategic Planning</li><li>Cross-functional Integration</li><li>Stakeholder Management</li><li>Technology Commercialization</li><li>Business Proposal</li></ul>
           </article>
         </div>
@@ -449,16 +483,16 @@
       <div class="max-w-[1440px] mx-auto px-5 md:px-8">
         <p class="eyebrow reveal">Selected Impact</p>
         <h2 class="section-title font-extrabold mt-5 reveal">Turning Experience into<br><span class="gradient-text">Meaningful Results</span></h2>
-        <p class="mt-6 text-lg text-slate-500 reveal">從策略思考，到真正產生影響力。</p>
+        <p class="mt-6 text-lg text-[var(--muted)] reveal">從策略思考，到真正產生影響力。</p>
 
         <div class="mt-16 space-y-20">
           <article class="grid lg:grid-cols-12 gap-8 reveal">
             <div class="lg:col-span-4"><div class="case-index">01</div><p class="eyebrow mt-5">Global Digital Marketing</p><h3 class="text-3xl font-bold mt-3">Global Technology Brand Growth</h3></div>
             <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
-              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-slate-600 leading-7">全球科技品牌需要建立更有效率的數位觸及與潛在客戶開發機制。</p></div>
-              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-slate-600 leading-7">整合 SEO、SEM、Content Marketing、Digital Campaign 與 Lead Generation。</p></div>
-              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-slate-600 leading-7">參與全球數位策略、Landing Page、Analytics 與 Marketing Coordination。</p></div>
-              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-slate-600 leading-7">協助建立更系統化的 Digital Marketing Foundation 與北美潛在客戶成長動能。</p></div>
+              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-[var(--muted)] leading-7">全球科技品牌需要建立更有效率的數位觸及與潛在客戶開發機制。</p></div>
+              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-[var(--muted)] leading-7">整合 SEO、SEM、Content Marketing、Digital Campaign 與 Lead Generation。</p></div>
+              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-[var(--muted)] leading-7">參與全球數位策略、Landing Page、Analytics 與 Marketing Coordination。</p></div>
+              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-[var(--muted)] leading-7">協助建立更系統化的 Digital Marketing Foundation 與北美潛在客戶成長動能。</p></div>
               <div class="md:col-span-2 font-serif text-3xl md:text-5xl mt-4">From Brand Visibility to Measurable Demand.</div>
             </div>
           </article>
@@ -468,10 +502,10 @@
           <article class="grid lg:grid-cols-12 gap-8 reveal">
             <div class="lg:col-span-4"><div class="case-index">02</div><p class="eyebrow mt-5">Brand Transformation</p><h3 class="text-3xl font-bold mt-3">Repositioning Technology for Global Markets</h3></div>
             <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
-              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-slate-600 leading-7">技術能力強，但品牌定位、客戶價值與國際市場溝通不夠一致。</p></div>
-              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-slate-600 leading-7">梳理 Brand Positioning、Value Proposition、Messaging 與 GTM Story。</p></div>
-              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-slate-600 leading-7">參與品牌重塑、CES／MWC、國際推廣與 Market Development。</p></div>
-              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-slate-600 leading-7">讓技術不只被展示，而能以更清楚、更具市場辨識度的方式被理解。</p></div>
+              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-[var(--muted)] leading-7">技術能力強，但品牌定位、客戶價值與國際市場溝通不夠一致。</p></div>
+              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-[var(--muted)] leading-7">梳理 Brand Positioning、Value Proposition、Messaging 與 GTM Story。</p></div>
+              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-[var(--muted)] leading-7">參與品牌重塑、CES／MWC、國際推廣與 Market Development。</p></div>
+              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-[var(--muted)] leading-7">讓技術不只被展示，而能以更清楚、更具市場辨識度的方式被理解。</p></div>
               <div class="md:col-span-2 font-serif text-3xl md:text-5xl mt-4">Technology is powerful. Clarity makes it valuable.</div>
             </div>
           </article>
@@ -481,10 +515,10 @@
           <article class="grid lg:grid-cols-12 gap-8 reveal">
             <div class="lg:col-span-4"><div class="case-index">03</div><p class="eyebrow mt-5">Technology × Business</p><h3 class="text-3xl font-bold mt-3">From Complex Technology to Executable Solutions</h3></div>
             <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
-              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-slate-600 leading-7">大型科技專案同時涉及技術、使用者、政策、預算、採購與跨部門協作。</p></div>
-              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-slate-600 leading-7">把複雜需求整理成 Business Requirement、Solution、Roadmap 與 Alignment。</p></div>
-              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-slate-600 leading-7">Requirement Discovery、Stakeholder Management、Project Coordination 與 Executive Presentation。</p></div>
-              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-slate-600 leading-7">讓科技方案從概念與需求，走向可溝通、可執行、可管理的實際專案。</p></div>
+              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-[var(--muted)] leading-7">大型科技專案同時涉及技術、使用者、政策、預算、採購與跨部門協作。</p></div>
+              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-[var(--muted)] leading-7">把複雜需求整理成 Business Requirement、Solution、Roadmap 與 Alignment。</p></div>
+              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-[var(--muted)] leading-7">Requirement Discovery、Stakeholder Management、Project Coordination 與 Executive Presentation.</p></div>
+              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-[var(--muted)] leading-7">讓科技方案從概念與需求，走向可溝通、可執行、可管理的實際專案。</p></div>
               <div class="md:col-span-2 font-serif text-3xl md:text-5xl mt-4">Connecting Technology, Business and People.</div>
             </div>
           </article>
@@ -494,10 +528,10 @@
           <article class="grid lg:grid-cols-12 gap-8 reveal">
             <div class="lg:col-span-4"><div class="case-index">04</div><p class="eyebrow mt-5">AI × Knowledge</p><h3 class="text-3xl font-bold mt-3">Making AI Practical for Real Work</h3></div>
             <div class="lg:col-span-8 grid md:grid-cols-2 gap-6">
-              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-slate-600 leading-7">組織接觸 AI 後，常遇到工具很多、卻不知道真正該用在哪裡。</p></div>
-              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-slate-600 leading-7">不從 Tool 開始，而從 Problem → Scenario → Workflow → AI 開始。</p></div>
-              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-slate-600 leading-7">導入研究、企劃、內容、簡報、知識管理、教育與 Workshop Design。</p></div>
-              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-slate-600 leading-7">協助學習者與工作者降低 AI 門檻，讓 AI 從新奇工具變成工作夥伴。</p></div>
+              <div><p class="eyebrow !text-[10px]">Challenge</p><p class="mt-3 text-[var(--muted)] leading-7">組織接觸 AI 後，常遇到工具很多、卻不知道真正該用在哪裡。</p></div>
+              <div><p class="eyebrow !text-[10px]">Strategy</p><p class="mt-3 text-[var(--muted)] leading-7">不從 Tool 開始，而從 Problem → Scenario → Workflow → AI 開始。</p></div>
+              <div><p class="eyebrow !text-[10px]">Action</p><p class="mt-3 text-[var(--muted)] leading-7">導入研究、企劃、內容、簡報、知識管理、教育與 Workshop Design。</p></div>
+              <div><p class="eyebrow !text-[10px]">Impact</p><p class="mt-3 text-[var(--muted)] leading-7">協助學習者與工作者降低 AI 門檻，讓 AI 從新奇工具變成工作夥伴。</p></div>
               <div class="md:col-span-2 font-serif text-3xl md:text-5xl mt-4">AI becomes valuable when it becomes usable.</div>
             </div>
           </article>
@@ -506,7 +540,7 @@
     </section>
 
     <!-- PROCESS -->
-    <section id="process" class="py-24 md:py-40 bg-slate-950 text-white">
+    <section id="process" class="py-24 md:py-40 bg-[var(--ink)] text-white">
       <div class="max-w-[1440px] mx-auto px-5 md:px-8">
         <p class="eyebrow !text-[var(--accent)] reveal">How I Work</p>
         <h2 class="section-title font-extrabold mt-5 reveal">From Complexity <span class="font-serif italic font-normal text-[var(--accent)]">to Clarity</span></h2>
@@ -546,7 +580,7 @@
             </div>
             <p class="mt-5 text-slate-600 leading-7">協助企業從「試用 AI 工具」走向「深度商業應用」。針對研究企劃、內容生成、知識管理與跨部門協作進行流程盤點，量身打造符合團隊需求的 Prompt 策略與 AI Workflow，切實提升組織整體生產力與決策效率。</p>
             <a href="https://calendar.app.google/cXUfFXZXK7CAPN6U8" target="_blank" rel="noopener"
-               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700">
+               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] hover:text-[var(--primary)]">
               <span>預約諮詢</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -561,7 +595,7 @@
             </div>
             <p class="mt-5 text-slate-600 leading-7">結合資訊工程技術背景與 20+ 年品牌實戰經驗，將複雜的前沿科技轉化為市場與客戶易懂的商業語言。提供從品牌定位、價值主張（Value Proposition）、訊息架構到國際展會與 Lead Generation 的完整 Go-to-Market 落地策略。</p>
             <a href="https://calendar.app.google/cXUfFXZXK7CAPN6U8" target="_blank" rel="noopener"
-               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-violet-600 hover:text-violet-700">
+               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent)]">
               <span>預約諮詢</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -576,7 +610,7 @@
             </div>
             <p class="mt-5 text-slate-600 leading-7">融合人的創意靈魂與 AI 的產出效率，建立可持續運作的品牌內容生成系統。並針對企業、學校及基金會提供實作型工作坊與培訓，協助團隊快速跨越 AI 門檻，將經驗轉化為具體的商業競爭力。</p>
             <a href="https://calendar.app.google/cXUfFXZXK7CAPN6U8" target="_blank" rel="noopener"
-               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+               class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--success)] hover:text-[var(--success)]">
               <span>預約諮詢</span>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
@@ -594,7 +628,7 @@
             <div class="lg:col-span-8">
               <p class="eyebrow">Contact Me / 聯絡我</p>
               <h2 class="section-title font-extrabold mt-5">Have a challenge<br><span class="gradient-text">worth solving?</span></h2>
-              <p class="mt-7 text-lg md:text-xl leading-8 text-slate-600 max-w-3xl">如果你正在思考品牌、AI、科技或下一步成長策略，我很樂意一起聊聊。</p>
+              <p class="mt-7 text-lg md:text-xl leading-8 text-[var(--muted)] max-w-3xl">如果你正在思考品牌、AI、科技或下一步成長策略，我很樂意一起聊聊。</p>
             </div>
             <div class="lg:col-span-4 lg:text-right">
               <div class="flex flex-wrap justify-end gap-3">
@@ -635,14 +669,14 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-slate-200 py-10">
+  <footer class="border-t border-[var(--line)] py-10">
     <div class="max-w-[1440px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
       <div>
         <div class="font-extrabold text-lg">IWEN / MOOIN</div>
-        <div class="mt-2 text-sm text-slate-500">Strategy × Brand × Technology × AI</div>
-        <div class="text-sm text-slate-400">From Strategy to Execution. Turning Technology into Meaningful Impact.</div>
+        <div class="mt-2 text-sm text-[var(--muted)]">Strategy × Brand × Technology × AI</div>
+        <div class="text-sm text-[var(--muted)]">From Strategy to Execution. Turning Technology into Meaningful Impact.</div>
       </div>
-      <div class="text-sm text-slate-400">© <span id="year"></span> Iwen / MOOIN</div>
+      <div class="text-sm text-[var(--muted)]">© <span id="year"></span> Iwen / MOOIN</div>
     </div>
   </footer>
 
