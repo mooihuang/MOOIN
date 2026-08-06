@@ -70,6 +70,30 @@
       background-size:52px 52px;
       mask-image:linear-gradient(to bottom, black 15%, rgba(0,0,0,.55) 60%, transparent 100%);
     }
+    .video-background-wrapper{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:-20;
+    }
+    .video-background-wrapper iframe{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:177.78vh;
+      height:100vh;
+      min-width:100%;
+      min-height:100%;
+      transform:translate(-50%, -50%);
+    }
+    .video-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(7,17,31,.86) 55%, rgba(7,17,31,.96) 100%);
+      z-index:-10;
+      pointer-events:none;
+    }
     .glow{
       position:absolute; border-radius:999px; filter:blur(70px); opacity:.25; pointer-events:none;
       animation:float 10s ease-in-out infinite alternate;
@@ -207,6 +231,10 @@
   <main>
     <!-- HERO -->
     <section id="home" class="relative min-h-screen pt-36 md:pt-40 overflow-hidden">
+      <div class="video-background-wrapper">
+        <iframe src="https://www.youtube.com/embed/d5m3uouGIZY?autoplay=1&mute=1&loop=1&playlist=d5m3uouGIZY&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&playsinline=1" title="Iwen Background Video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="video-overlay"></div>
       <div class="absolute inset-0 grid-bg -z-10"></div>
       <div class="glow bg-[rgba(0,119,200,.20)] w-72 h-72 left-[5%] top-[18%]"></div>
       <div class="glow bg-[rgba(122,62,200,.18)] w-80 h-80 right-[4%] top-[24%]" style="animation-delay:-2s"></div>
@@ -622,51 +650,118 @@
     <!-- CONTACT -->
     <section id="contact" class="py-24 md:py-40">
       <div class="max-w-[1440px] mx-auto px-5 md:px-8">
-        <div class="rounded-[2rem] border border-[var(--line)] bg-white/80 shadow-soft overflow-hidden relative reveal">
+        <div class="rounded-[2rem] border border-[var(--line)] bg-white/90 shadow-soft overflow-hidden relative reveal">
           <div class="absolute inset-0 opacity-60" style="background:radial-gradient(circle at 10% 20%, rgba(0,119,200,.15), transparent 28%),radial-gradient(circle at 90% 75%, rgba(0,180,176,.15), transparent 28%),radial-gradient(circle at 70% 0%, rgba(122,62,200,.10), transparent 24%);"></div>
-          <div class="relative p-8 md:p-14 lg:p-20 grid lg:grid-cols-12 gap-10 items-end">
-            <div class="lg:col-span-8">
-              <p class="eyebrow">Contact Me / 聯絡我</p>
-              <h2 class="section-title font-extrabold mt-5">Have a challenge<br><span class="gradient-text">worth solving?</span></h2>
-              <p class="mt-7 text-lg md:text-xl leading-8 text-[var(--muted)] max-w-3xl">如果你正在思考品牌、AI、科技或下一步成長策略，我很樂意一起聊聊。</p>
-            </div>
-            <div class="lg:col-span-4 lg:text-right">
-              <div class="flex flex-wrap justify-end gap-3">
-                <a href="https://line.me/ti/p/gthxmbS2Wp" target="_blank" rel="noopener"
-                   class="w-12 h-12 rounded-full border border-[var(--line)] bg-[var(--secondary)] text-white grid place-items-center text-lg hover:-translate-y-1 transition" aria-label="LINE">
-                  <i class="fa-brands fa-line"></i>
-                </a>
-                <a href="https://www.facebook.com/Iwen.Yujen/" target="_blank" rel="noopener"
-                   class="w-12 h-12 rounded-full border border-[var(--line)] bg-[var(--primary)] text-white grid place-items-center text-lg hover:-translate-y-1 transition" aria-label="Facebook">
-                  <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/iwenh/" target="_blank" rel="noopener"
-                   class="w-12 h-12 rounded-full border border-[var(--line)] bg-[var(--deep)] text-white grid place-items-center text-lg hover:-translate-y-1 transition" aria-label="LinkedIn">
-                  <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/" target="_blank" rel="noopener"
-                   class="w-12 h-12 rounded-full border border-[var(--line)] bg-[var(--ink)] text-white grid place-items-center text-lg hover:-translate-y-1 transition" aria-label="GitHub">
-                  <i class="fa-brands fa-github"></i>
-                </a>
+          <div class="relative p-8 md:p-14 lg:p-16 grid gap-10 lg:grid-cols-[1.05fr_1.2fr] items-start">
+            <div class="space-y-8">
+              <div>
+                <p class="eyebrow">Contact & Form / 聯絡表單</p>
+                <h2 class="section-title font-extrabold mt-5">與我們取得聯繫，<br><span class="gradient-text">開始你的下一個專案。</span></h2>
+                <p class="mt-7 text-lg md:text-xl leading-8 text-[var(--muted)] max-w-3xl">請留下你的需求，我們會儘快回覆你。若你已經有初步活動構想，也歡迎直接填寫下面表單。</p>
               </div>
 
-              <div class="mt-5 flex flex-wrap justify-end gap-3">
-                <a href="https://forms.gle/VWNpRVNjThWxMrX38" target="_blank" rel="noopener"
-                   class="inline-flex items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)]/10 px-5 py-3 text-sm font-semibold text-[var(--accent)] hover:bg-[var(--accent)]/15 transition">
-                  <span>填寫需求表單</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                </a>
-                <a href="https://calendar.app.google/cXUfFXZXK7CAPN6U8" target="_blank" rel="noopener"
-                   class="cta inline-flex items-center justify-center rounded-full border border-[var(--primary)] bg-[var(--primary)] px-7 py-4 font-semibold min-w-[190px] text-white hover:bg-[var(--deep)] transition">
-                  <span>Book a Conversation ↗</span>
-                </a>
+              <div class="grid gap-4 text-[var(--ink)]">
+                <div class="rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6">
+                  <div class="text-sm uppercase tracking-[.18em] text-[var(--accent)]">聯絡資訊</div>
+                  <div class="mt-5 space-y-3 text-sm leading-7 text-[var(--muted)]">
+                    <p><strong>聯絡信箱：</strong>mooin.biz@gmail.com</p>
+                    <p><strong>電話：</strong>02-26516200</p>
+                    <p><strong>地址：</strong>台北市南港區市民大道八段205號15樓 (聯強國際大樓)</p>
+                    <p><strong>統編：</strong>15583209</p>
+                  </div>
+                </div>
+                <div class="rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6">
+                  <div class="text-sm uppercase tracking-[.18em] text-[var(--accent)]">快速動線</div>
+                  <div class="mt-5 grid gap-3 text-sm leading-7 text-[var(--muted)]">
+                    <a href="mailto:mooin.biz@gmail.com" class="text-[var(--primary)] hover:underline">Email 我們</a>
+                    <a href="tel:0226516200" class="text-[var(--primary)] hover:underline">直接撥打</a>
+                    <a href="https://forms.gle/VWNpRVNjThWxMrX38" target="_blank" rel="noopener" class="text-[var(--primary)] hover:underline">填寫 Google 表單</a>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div>
+              <form id="googleContactForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeubRZGw33WMKvycB8iz3nLBbN_-viLco7AqZXxXZdOxvgtfA/formResponse" method="POST" target="hidden_iframe" class="grid gap-5 rounded-[2rem] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-sm">
+                <div class="grid gap-5 md:grid-cols-2">
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>您的姓名 / 稱呼</span>
+                    <input type="text" name="entry.776726089" required class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="例如：王先生、Anna" />
+                  </label>
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>聯絡電話</span>
+                    <input type="tel" name="entry.588813077" required class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="您最常使用的電話" />
+                  </label>
+                </div>
+
+                <div class="grid gap-5 md:grid-cols-2">
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>電子郵件</span>
+                    <input type="email" name="entry.485680381" required class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="example@mail.com" />
+                  </label>
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>可參與的活動日期與時段</span>
+                    <input type="text" name="entry.1869254526" class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="例如：6/10 14:00-17:00" />
+                  </label>
+                </div>
+
+                <div class="grid gap-5 md:grid-cols-2">
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>您有意願協助的類別</span>
+                    <select name="entry.1421337762" class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10">
+                      <option value="">請選擇</option>
+                      <option value="講師/演講者">講師 / 演講者</option>
+                      <option value="活動協作">活動協作</option>
+                      <option value="媒體/內容">媒體 / 內容</option>
+                      <option value="贊助/合作">贊助 / 合作</option>
+                      <option value="其他">其他</option>
+                    </select>
+                  </label>
+                  <label class="block text-sm font-semibold text-[var(--deep)]">
+                    <span>過去是否有參與活動經驗 / 服務經驗</span>
+                    <select name="entry.624278828" class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10">
+                      <option value="">請選擇</option>
+                      <option value="有，曾參與活動">有，曾參與活動</option>
+                      <option value="有，曾提供服務">有，曾提供服務</option>
+                      <option value="沒有經驗">沒有經驗</option>
+                      <option value="其他">其他</option>
+                    </select>
+                  </label>
+                </div>
+
+                <label class="block text-sm font-semibold text-[var(--deep)]">
+                  <span>餐飲需求</span>
+                  <input type="text" name="entry.151687446" class="mt-3 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="例如：葷、素、無麩質" />
+                </label>
+
+                <label class="block text-sm font-semibold text-[var(--deep)]">
+                  <span>其他建議或備註（詳細文字）</span>
+                  <textarea name="entry.689334536" rows="5" class="mt-3 w-full rounded-3xl border border-[var(--line)] bg-white px-4 py-4 text-sm text-[var(--ink)] outline-none transition focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/10" placeholder="請輸入更多補充資訊或注意事項"></textarea>
+                </label>
+
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mt-2">
+                  <button type="submit" class="rounded-full bg-[var(--primary)] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-[var(--primary)]/20 hover:bg-[var(--deep)] transition">送出聯絡表單</button>
+                  <a href="https://forms.gle/VWNpRVNjThWxMrX38" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)]/10 px-6 py-4 text-sm font-semibold text-[var(--accent)] hover:bg-[var(--accent)]/15 transition">
+                    也可直接填寫 Google 表單
+                  </a>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <div id="formSuccessModal" class="form-modal-overlay hidden fixed inset-0 z-50 items-center justify-center p-5 bg-black/40">
+    <div class="form-modal max-w-xl rounded-[2rem] border border-[var(--line)] bg-white p-8 text-center shadow-2xl">
+      <div class="text-[var(--accent)] text-xs uppercase tracking-[.3em] font-bold mb-4">已送出</div>
+      <h3 class="text-3xl font-extrabold text-[var(--ink)]">您的需求已送出</h3>
+      <p class="mt-4 text-[var(--muted)] leading-7">我們已收到您的訊息，將儘快與您聯絡。</p>
+      <button id="closeFormSuccess" class="mt-8 inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--deep)] transition">關閉</button>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="border-t border-[var(--line)] py-10">
@@ -741,6 +836,51 @@
     window.addEventListener('scroll', () => {
       header.style.transform = window.scrollY > 40 ? 'translateY(-2px)' : 'translateY(0)';
     }, {passive:true});
+
+    // Google Form submit handling
+    const form = document.getElementById('googleContactForm');
+    const successModal = document.getElementById('formSuccessModal');
+    const closeModalButton = document.getElementById('closeFormSuccess');
+    if(form){
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const submitButton = form.querySelector('button[type="submit"]');
+        if(submitButton) submitButton.disabled = true;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = () => {
+          if(xhr.status >= 200 && xhr.status < 400){
+            showSuccessModal();
+            form.reset();
+          } else {
+            showSuccessModal();
+            form.reset();
+          }
+          if(submitButton) submitButton.disabled = false;
+        };
+        xhr.onerror = () => {
+          showSuccessModal();
+          if(submitButton) submitButton.disabled = false;
+        };
+        const formData = new FormData(form);
+        xhr.send(new URLSearchParams(formData).toString());
+      });
+    }
+
+    function showSuccessModal(){
+      if(successModal){
+        successModal.classList.remove('hidden');
+        successModal.classList.add('flex');
+      }
+    }
+
+    if(closeModalButton){
+      closeModalButton.addEventListener('click', () => {
+        successModal.classList.add('hidden');
+        successModal.classList.remove('flex');
+      });
+    }
 
     // Current year
     document.getElementById('year').textContent = new Date().getFullYear();
