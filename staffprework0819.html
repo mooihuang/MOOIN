@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI數位助教：課前準備與教具需求 - 課前預備手冊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        earth: {
+                            50: '#f8f5f0',
+                            100: '#eee5d8',
+                            200: '#decbb8',
+                            300: '#caab93',
+                            400: '#b48a6e',
+                            500: '#9d6e50',
+                            600: '#82543c',
+                            700: '#68402f',
+                            800: '#523225',
+                            900: '#3a231a'
+                        },
+                        clay: {
+                            50: '#fdf8f5',
+                            100: '#f9eee8',
+                            200: '#f2d8cb',
+                            300: '#e5b9a4',
+                            400: '#d29175',
+                            500: '#b86d4f',
+                            600: '#a15539'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #f6f2eb; 
+            font-size: 18px;
+            color: #3a231a;
+        }
+        .bg-earth-banner { background-color: #e3d6c5; }
+        .bg-card-earth { background-color: #ffffff; border: 1px solid #decbb8; }
+        #toast { transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        @media print {
+            .no-print { display: none !important; }
+            body { background-color: #ffffff !important; color: #000000 !important; }
+            .bg-card-earth { border: 1px solid #ccc !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Header Banner -->
+<header class="bg-earth-banner border-b-2 border-earth-300 text-earth-900 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        
+        <div class="flex items-center space-x-4 w-full">
+            <!-- Vector Wheat Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-earth-600 text-white flex items-center justify-center font-black shadow-md shrink-0">
+                <svg class="w-9 h-9 fill-current text-white" viewBox="0 0 24 24">
+                    <path d="M12 2c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6v-18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M7 6.5c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5S4 10.3 4 9s1.5-2.5 3-2.5zm10 0c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5-3-1.2-3-2.5 1.5-2.5 3-2.5zm-10 6c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5S4 16.3 4 15s1.5-2.5 3-2.5zm10 0c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5-3-1.2-3-2.5 1.5-2.5 3-2.5z"/>
+                </svg>
+            </div>
+
+            <div class="flex-grow">
+                <div class="text-xs sm:text-sm font-bold text-earth-700 tracking-wider mb-1">
+                    指導：農業部農糧署 • 主辦：臺灣穀物產業發展協會
+                </div>
+
+                <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-earth-900">
+                    AI數位助教：課前準備與教具需求手冊
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-2.5 mt-2 text-sm sm:text-base font-bold">
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earth-600 text-white font-bold shadow-xs">
+                        🌾 食米學園
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earth-600 text-white font-bold shadow-xs">
+                        🤖 AI輔助教案篇
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earth-600 text-white font-bold shadow-xs">
+                        <i class="fa-solid fa-heart"></i> 艾文老師
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex gap-2 no-print shrink-0 w-full md:w-auto">
+            <button onclick="window.print()" class="flex-1 md:flex-initial bg-earth-700 hover:bg-earth-800 text-white font-bold px-4 py-2.5 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm text-sm">
+                <i class="fa-solid fa-print"></i> 列印此頁
+            </button>
+            <button onclick="copyNoticeText()" class="flex-1 md:flex-initial bg-earth-500 hover:bg-earth-600 text-white font-bold px-4 py-2.5 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm text-sm">
+                <i class="fa-solid fa-share-nodes"></i> 複製文字通知
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Area -->
+<main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- SECTION 1: PARTICIPANT CHECKLIST -->
+    <section class="space-y-6">
+        <div class="bg-earth-100/80 border-2 border-earth-300 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 border-b border-earth-300 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-3.5 bg-earth-600 text-white rounded-2xl shadow-md">
+                        <i class="fa-solid fa-user-check text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black text-earth-900">
+                            一、上課前學員準備事項 (Checklist)
+                        </h2>
+                        <p class="text-sm sm:text-base text-earth-800 font-medium mt-0.5">請參訓之國小教師與營養師，於研習前 3 天完成以下備置：</p>
+                    </div>
+                </div>
+                <span id="student-checklist-counter" class="text-sm sm:text-base bg-earth-600 text-white font-black px-4 py-1.5 rounded-full shadow-xs whitespace-nowrap">
+                    0 / 7 已完成
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base font-bold text-earth-900">
+                
+                <!-- Item 1 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">1. 筆記型電腦 (含電源線)</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">每組需有 1~2 台筆電，用於主要文件整合與 HeyGen 影音生成。</p>
+                    </div>
+                </label>
+
+                <!-- Item 2 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">2. 可順暢上網的手機</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">用於提示詞（Prompt）測試、資料檢索與團體互動點影音。</p>
+                    </div>
+                </label>
+
+                <!-- Item 3 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">3. Gemini / ChatGPT 帳號 (擇一)</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">建議使用個人 Google 帳號，可直接免費開通使用 Gemini。</p>
+                    </div>
+                </label>
+
+                <!-- Item 4 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">4. Gemini Notebook 帳號</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">登入 Google 帳號即可免費使用 NotebookLM (Gemini Notebook)。</p>
+                    </div>
+                </label>
+
+                <!-- Item 5 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">5. HeyGen 帳號</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">請先至 HeyGen 官網免費註冊帳號，以利課堂直接生成影片。</p>
+                    </div>
+                </label>
+
+                <!-- Item 6 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block">6. 食米教案/菜單檔 (選填)</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">若有現行教案或菜單檔（PDF/Word），可存於隨身碟或雲端硬碟備用。</p>
+                    </div>
+                </label>
+
+                <!-- Item 7 -->
+                <label class="flex items-start gap-3 bg-white p-4.5 rounded-2xl border border-earth-200 hover:border-earth-500 cursor-pointer transition shadow-xs md:col-span-2">
+                    <input type="checkbox" onchange="updateStudentChecklist()" class="student-cb rounded text-earth-600 focus:ring-earth-500 w-5 h-5 accent-earth-600 mt-1 shrink-0">
+                    <div>
+                        <span class="text-earth-900 font-black text-lg block text-clay-600">7. 自備 10 秒個人影片 (包括影像+聲音)</span>
+                        <p class="text-xs sm:text-sm font-medium text-earth-700 mt-0.5">用手機錄製 10 秒自我介紹短片（範例：「各位小朋友好，我是今天的食育老師/營養師！」），用於製作個人專屬 AI 虛擬主播。</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: ORGANIZER & VENUE REQUIREMENTS -->
+    <section class="space-y-6">
+        <div class="bg-card-earth rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="flex items-center gap-3 border-l-4 border-earth-600 pl-4">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-black text-earth-900 flex items-center gap-2">
+                        <i class="fa-solid fa-building-user text-earth-600"></i> 二、課前準備與教具需求（給主辦單位的 Checklist）
+                    </h2>
+                    <p class="text-sm sm:text-base font-medium text-earth-800 mt-0.5">請辦課單位（穀物發展協會/講習場地負責人）協助確認場地軟硬體備置：</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <!-- Category 1 -->
+                <div class="bg-earth-50 p-5 rounded-2xl border border-earth-200 space-y-3">
+                    <h3 class="font-black text-lg text-earth-900 flex items-center gap-2">
+                        <i class="fa-solid fa-display text-earth-600"></i> 1. 簡報與影音播放設備
+                    </h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-earth-800 font-medium list-disc list-inside">
+                        <li>高清投影機 / LED 大螢幕 (支援 HDMI 視訊介面)</li>
+                        <li>講師麥克風 1 支 (無線耳掛或手握式)</li>
+                        <li>擴音音響系統 (能清晰播放產出之影片聲音)</li>
+                    </ul>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="bg-earth-50 p-5 rounded-2xl border border-earth-200 space-y-3">
+                    <h3 class="font-black text-lg text-earth-900 flex items-center gap-2">
+                        <i class="fa-solid fa-wifi text-earth-600"></i> 2. 網路與電力環境 (重中之重)
+                    </h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-earth-800 font-medium list-disc list-inside">
+                        <li>穩定高效 Wi-Fi 網路 (需可承受 30+ 人同時在線上傳下載)</li>
+                        <li>分组桌邊延長線 (每組提供 1~2 個插座供筆電充電)</li>
+                    </ul>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-earth-50 p-5 rounded-2xl border border-earth-200 space-y-3">
+                    <h3 class="font-black text-lg text-earth-900 flex items-center gap-2">
+                        <i class="fa-solid fa-users-rectangle text-earth-600"></i> 3. 桌椅空間配置 (30 人分組)
+                    </h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-earth-800 font-medium list-disc list-inside">
+                        <li>分組島型桌型：安排 <strong>6 大組（每組 5 人）</strong></li>
+                        <li>確保「國小教師」與「學校營養師」混和編組</li>
+                        <li>每組確保配置至少 2~3 台筆電放置空間</li>
+                    </ul>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="bg-earth-50 p-5 rounded-2xl border border-earth-200 space-y-3">
+                    <h3 class="font-black text-lg text-earth-900 flex items-center gap-2">
+                        <i class="fa-solid fa-file-signature text-earth-600"></i> 4. 行政與助教支援
+                    </h3>
+                    <ul class="space-y-2 text-sm sm:text-base text-earth-800 font-medium list-disc list-inside">
+                        <li>倘若方便的話，現場配置 1 位資訊助教 (協助學員登入 AI 帳號與連線)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-6 right-6 bg-earth-900 text-earth-100 border border-earth-300 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-50 text-base font-bold opacity-0 pointer-events-none transform translate-y-4">
+    <i class="fa-solid fa-circle-check text-earth-300 text-xl"></i>
+    <span id="toast-message">已成功複製課前通知文字！</span>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-earth-200 py-6 text-center text-sm font-semibold text-earth-800 mt-auto shadow-inner">
+    <div class="max-w-6xl mx-auto px-4 space-y-1">
+        <p>AI數位助教 課前預備與教具需求手冊 • 農業部農糧署 指導 • 臺灣穀物產業發展協會 主辦</p>
+    </div>
+</footer>
+
+<script>
+    /* Load & Update Student Checklist */
+    window.onload = function() {
+        loadStudentChecklist();
+    };
+
+    function updateStudentChecklist() {
+        const checkboxes = document.querySelectorAll('.student-cb');
+        let count = 0;
+        const states = [];
+        checkboxes.forEach((cb) => {
+            if (cb.checked) count++;
+            states.push(cb.checked);
+        });
+        document.getElementById('student-checklist-counter').textContent = `${count} / ${checkboxes.length} 已完成`;
+        localStorage.setItem('rice_ai_standalone_checklist', JSON.stringify(states));
+    }
+
+    function loadStudentChecklist() {
+        const saved = JSON.parse(localStorage.getItem('rice_ai_standalone_checklist'));
+        if (saved && Array.isArray(saved)) {
+            const checkboxes = document.querySelectorAll('.student-cb');
+            checkboxes.forEach((cb, i) => {
+                if (saved[i]) cb.checked = true;
+            });
+            updateStudentChecklist();
+        }
+    }
+
+    /* Copy Pre-class Notice Text for Email / LINE */
+    function copyNoticeText() {
+        const noticeText = `【AI數位助教：課前準備通知】
+
+各位老師與營養師好：
+歡迎參加「AI 輔助食米教案與午餐設計」培訓課程！為讓您在研習中能順暢體驗 AI 工具並帶走作品，請於上課前協助完成以下 7 項準備：
+
+1. 攜帶筆記型電腦 (含電源線)
+2. 攜帶可順暢上網的手機
+3. 申請 Gemini / ChatGPT 帳號 (建議優先登入 Google Gemini)
+4. 申請 Gemini Notebook 帳號 (直接使用 Google 帳號免費登入)
+5. 註冊 HeyGen 免費帳號 (https://www.heygen.com/)
+6. 準備現行食米教案或學校菜單電子檔 (選填，存於 USB 或雲端)
+7. 自備 10 秒個人影片 (含影像+聲音，如：「各位小朋友好，我是...」)
+
+期待與大家一起展開智慧食育體驗！
+指導單位：農業部農糧署
+主辦單位：臺灣穀物產業發展協會`;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(noticeText).then(() => {
+                showToast('已複製通知文字，可直接貼至 LINE 或 Email！');
+            }).catch(() => {
+                fallbackCopy(noticeText);
+            });
+        } else {
+            fallbackCopy(noticeText);
+        }
+    }
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            showToast('已複製通知文字，可直接貼至 LINE 或 Email！');
+        } catch (err) {
+            showToast('複製失敗，請手動選取複製。');
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').textContent = msg;
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        }, 2200);
+    }
+</script>
+</body>
+</html>
