@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI數位助教：AI 輔助食米教案與午餐設計 - 課堂互動工作台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        chestnut: {
+                            50: '#fdf8f5',
+                            100: '#f7ebe4',
+                            200: '#edd5c8',
+                            300: '#dda993',
+                            400: '#c5785d',
+                            500: '#9b563f',
+                            600: '#7a4230',
+                            700: '#693728',
+                            800: '#532d22',
+                            900: '#3d2018'
+                        },
+                        earthy: {
+                            50: '#fbf9f6',
+                            100: '#f5efea',
+                            200: '#e8dcce',
+                            300: '#d7c1aa',
+                            400: '#b08f72',
+                            500: '#8c6758',
+                            600: '#755244',
+                            700: '#5c3f34',
+                            800: '#473027',
+                            900: '#312019'
+                        },
+                        peach: {
+                            50: '#fffbf9',
+                            100: '#fdede6',
+                            200: '#f8d9cd',
+                            300: '#f3bcab',
+                            400: '#ea9177'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: #faf5f0; 
+            font-size: 18px;
+            color: #312019;
+        }
+        .tab-btn.active { 
+            background-color: #8c6758; 
+            color: white; 
+            box-shadow: 0 4px 14px rgba(140, 103, 88, 0.35); 
+        }
+        .bg-peach-table {
+            background-color: #f8d9cd;
+        }
+        .bg-card-warm {
+            background-color: #ffffff;
+            border: 1px solid #e8dcce;
+        }
+        #toast { transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- Sticky Header & Tab Container pinned to top -->
+<div class="sticky top-0 z-50 shadow-md">
+    <!-- Main Header Banner -->
+    <header class="bg-peach-table border-b-2 border-chestnut-200 text-earthy-900 py-5 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center space-x-4 w-full">
+                <!-- Vector Wheat Icon -->
+                <div class="w-14 h-14 rounded-2xl bg-earthy-500 text-white flex items-center justify-center font-black shadow-md shrink-0">
+                    <svg class="w-9 h-9 fill-current text-white" viewBox="0 0 24 24">
+                        <path d="M12 2c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6c.5 0 .9.2 1.2.6l1 1.5c.3.5.3 1.1 0 1.6l-1 1.5c-.3.4-.7.6-1.2.6s-.9-.2-1.2-.6l-1-1.5c-.3-.5-.3-1.1 0-1.6l1-1.5c.3-.4.7-.6 1.2-.6zm0 6v-18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M7 6.5c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5S4 10.3 4 9s1.5-2.5 3-2.5zm10 0c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5-3-1.2-3-2.5 1.5-2.5 3-2.5zm-10 6c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5S4 16.3 4 15s1.5-2.5 3-2.5zm10 0c1.5 0 3 1.2 3 2.5s-1.5 2.5-3 2.5-3-1.2-3-2.5 1.5-2.5 3-2.5z"/>
+                    </svg>
+                </div>
+
+                <div class="flex-grow">
+                    <!-- Guiding & Organizing Agencies -->
+                    <div class="text-xs sm:text-sm font-bold text-earthy-700 tracking-wider mb-1">
+                        指導：農業部農糧署 • 主辦：臺灣穀物產業發展協會
+                    </div>
+
+                    <!-- Main Title -->
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-earthy-900 flex items-center gap-2">
+                        AI數位助教：AI 輔助食米教案與午餐設計
+                    </h1>
+
+                    <!-- Subtitle elements directly below main title -->
+                    <div class="flex flex-wrap items-center gap-2.5 mt-2 text-sm sm:text-base font-bold">
+                        <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earthy-500 text-white font-bold shadow-xs">
+                            🌾 食米學園
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earthy-500 text-white font-bold shadow-xs">
+                            🤖 AI輔助教案篇
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-earthy-500 text-white font-bold shadow-xs">
+                            <i class="fa-solid fa-heart text-red-300"></i> 艾文老師
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <!-- Navigation Tabs (Stays sticky with header) -->
+    <nav class="bg-white/95 backdrop-blur-md border-b border-chestnut-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-3 sm:space-x-4 overflow-x-auto py-3 text-base sm:text-lg font-bold">
+                <button onclick="switchTab('agenda')" id="tab-agenda" class="tab-btn active px-6 py-2.5 rounded-2xl transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-list-check text-lg"></i> 課前準備與課綱
+                </button>
+                <button onclick="switchTab('prompts')" id="tab-prompts" class="tab-btn text-earthy-800 hover:bg-peach-100 px-6 py-2.5 rounded-2xl transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-file-code text-lg"></i> 實作參考指令 (Prompt)
+                </button>
+                <button onclick="switchTab('nb')" id="tab-nb" class="tab-btn text-earthy-800 hover:bg-peach-100 px-6 py-2.5 rounded-2xl transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-book-bookmark text-lg"></i> Gemini NB 知識庫實戰
+                </button>
+                <button onclick="switchTab('builder')" id="tab-builder" class="tab-btn text-earthy-800 hover:bg-peach-100 px-6 py-2.5 rounded-2xl transition flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-sliders text-lg"></i> 萬用指令生成器
+                </button>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Main Content Area -->
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- SECTION 1: PRE-CLASS CHECKLIST & AGENDA -->
+    <section id="section-agenda" class="space-y-8">
+        
+        <!-- Pre-Class Checklist Banner -->
+        <div class="bg-peach-100/80 border-2 border-chestnut-200 rounded-3xl p-6 sm:p-7 shadow-sm relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 border-b border-chestnut-200/80 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-3.5 bg-earthy-500 text-white rounded-2xl shadow-md">
+                        <i class="fa-solid fa-clipboard-check text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black text-earthy-900 flex items-center gap-2">
+                            上課前學員實作檢查表 (Checklist)
+                        </h2>
+                        <p class="text-sm sm:text-base text-earthy-800 font-medium mt-0.5">請對照確認課前準備項目，點選勾選框以記錄進度！</p>
+                    </div>
+                </div>
+                <span id="checklist-counter" class="text-sm sm:text-base bg-earthy-500 text-white font-black px-4 py-1.5 rounded-full shadow-xs whitespace-nowrap">
+                    0 / 7 已完成
+                </span>
+            </div>
+
+            <!-- 7 Checklist Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-base font-bold text-earthy-900">
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>1. 筆記型電腦 (含電源線)</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>2. 可順暢上網的手機</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>3. Gemini / ChatGPT 帳號</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>4. <a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-600">Gemini Notebook</a> 帳號</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>5. HeyGen 帳號</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span>6. 食米教案/菜單檔 (選填)</span>
+                </label>
+                <label class="flex items-center gap-3 bg-white/90 p-4 rounded-2xl border border-chestnut-200 hover:border-earthy-500 cursor-pointer transition shadow-xs hover:shadow-sm sm:col-span-2 md:col-span-2 lg:col-span-2">
+                    <input type="checkbox" onchange="updateChecklist()" class="checklist-item rounded text-earthy-500 focus:ring-earthy-500 w-5 h-5 accent-earthy-500">
+                    <span class="text-earthy-900 font-bold">7. 自備 10 秒個人影片 (包括影像+聲音)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Detailed Workshop Timetable -->
+        <div class="space-y-6">
+            <div class="flex items-center gap-3 border-l-4 border-earthy-500 pl-4">
+                <h2 class="text-2xl font-black text-earthy-900 flex items-center gap-2">
+                    <i class="fa-solid fa-clock text-earthy-500"></i> 2.5 小時（150 分鐘）連貫課程流程
+                </h2>
+                <span class="text-sm font-bold bg-peach-200 text-earthy-900 px-3.5 py-1 rounded-xl">全程實戰講授</span>
+            </div>
+
+            <!-- Stage 1 -->
+            <div class="bg-card-warm rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md transition">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-chestnut-100 pb-4 mb-4 gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-earthy-500 text-white font-black text-sm px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">第一階段</span>
+                        <h3 class="font-black text-xl text-earthy-900">AI 認知與校園安全規範 (20min)</h3>
+                    </div>
+                    <span class="text-sm font-bold text-earthy-900 bg-peach-100 px-4 py-1.5 rounded-xl border border-chestnut-200">⏰ 20 mins</span>
+                </div>
+                <div class="space-y-2 bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200/60 text-base text-earthy-900">
+                    <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-earthy-500"></i> 食育 AI 協作心法與安全守則
+                    </p>
+                    <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                        <li>AI 為高效助理，老師/營養師為最後品質決策者</li>
+                        <li>個資安全保護與 AI 幻覺防範（營養數據人工核對）</li>
+                        <li>Prompt 黃金公式：角色 + 任務 + 受眾 + 限制條件</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="bg-card-warm rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md transition">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-chestnut-100 pb-4 mb-4 gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-earthy-600 text-white font-black text-sm px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">第二階段</span>
+                        <h3 class="font-black text-xl text-earthy-900">AI 輔助教案、評量與菜單設計 (20min)</h3>
+                    </div>
+                    <span class="text-sm font-bold text-earthy-900 bg-peach-100 px-4 py-1.5 rounded-xl border border-chestnut-200">⏰ 20 mins</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-base text-earthy-900">
+                    <div class="space-y-2 bg-peach-50/60 p-4 rounded-2xl border border-chestnut-200/60">
+                        <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-chalkboard-user text-earthy-500"></i> 教案與學習單生成
+                        </p>
+                        <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                            <li>教師：產出「糙米與爆米香」40 分鐘食育教案與學習單</li>
+                            <li>多層次選擇題與互動課後小評量自動生成</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2 bg-peach-50/60 p-4 rounded-2xl border border-chestnut-200/60">
+                        <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-utensils text-earthy-500"></i> 學校午餐菜單與廣播稿
+                        </p>
+                        <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                            <li>營養師：產出「一週國產米學校午餐菜單」</li>
+                            <li>生成親切生動的午餐時間「食育小廣播稿」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="bg-card-warm rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md transition">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-chestnut-100 pb-4 mb-4 gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-earthy-700 text-white font-black text-sm px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">第三階段</span>
+                        <h3 class="font-black text-xl text-earthy-900"><a href="https://notebooklm.google.com/" target="_blank" class="hover:underline">Gemini Notebook</a> 知識庫實戰 (30min)</h3>
+                    </div>
+                    <span class="text-sm font-bold text-earthy-900 bg-peach-100 px-4 py-1.5 rounded-xl border border-chestnut-200">⏰ 30 mins</span>
+                </div>
+                <div class="space-y-2 bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200/60 text-base text-earthy-900">
+                    <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark text-earthy-500"></i> 建置專屬「食米知識庫」
+                    </p>
+                    <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                        <li>導入農糧署國產米/糙米 PDF、營養數據表與爆米香歷史</li>
+                        <li>產出「糙米營養摘要」與「米食對比表」作為教學基底</li>
+                        <li>設定轉譯指令，將資料轉化為國小生聽得懂的白話比喻（如腸道掃把）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="bg-card-warm rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md transition">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-chestnut-100 pb-4 mb-4 gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-earthy-800 text-white font-black text-sm px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">第四階段</span>
+                        <h3 class="font-black text-xl text-earthy-900">HeyGen 影音製作與 Prompt 實戰 (80min)</h3>
+                    </div>
+                    <span class="text-sm font-bold text-earthy-900 bg-peach-100 px-4 py-1.5 rounded-xl border border-chestnut-200">⏰ 80 mins</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-base text-earthy-900">
+                    <div class="space-y-2 bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200/60">
+                        <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-earthy-600"></i> Prompt 收斂與 HeyGen 影音生成
+                        </p>
+                        <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                            <li>將食育知識收斂為 180 字兩欄式短影音腳本</li>
+                            <li>上傳自備 10 秒影片或選擇預設虛擬主播</li>
+                            <li>設定台灣中文語音，生成 30-60 秒食育短影片</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2 bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200/60">
+                        <p class="font-bold text-earthy-900 text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-display text-earthy-600"></i> 成果發表與點評
+                        </p>
+                        <ul class="list-disc list-inside space-y-1.5 text-earthy-800 font-medium">
+                            <li>全場分組進行「教案/菜單 + 短影音」成果投影展示</li>
+                            <li>講師點評總結：如何將成果應用回校園與落實於食米教學</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PROMPT HANDBOOK -->
+    <section id="section-prompts" class="hidden space-y-8">
+        
+        <!-- Header Banner -->
+        <div class="bg-peach-table text-earthy-900 border-2 border-chestnut-200 rounded-3xl p-6 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="p-3.5 bg-earthy-500 text-white rounded-2xl shadow-sm">
+                    <i class="fa-solid fa-copy text-2xl"></i>
+                </div>
+                <div>
+                    <h2 class="font-black text-earthy-900 text-xl sm:text-2xl">現場一鍵複製指令庫 (Prompt Cards)</h2>
+                    <p class="text-sm sm:text-base text-earthy-800 mt-0.5">點擊工具連結可開啟對應 AI 平台，點擊卡片右上角「一鍵複製」按鈕即可複製 Prompt！</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Card 1: Teacher -->
+            <div class="bg-card-warm rounded-3xl p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-black px-3 py-1.5 bg-peach-200 text-earthy-900 rounded-lg border border-chestnut-200">
+                            指令 1｜教師組 (教案與學習單)
+                        </span>
+                        <button onclick="copyText('prompt-2-1')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-sm font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs active:scale-95">
+                            <i class="fa-solid fa-clone"></i> 一鍵複製
+                        </button>
+                    </div>
+                    <h3 class="font-black text-lg text-earthy-900">生成「糙米與爆米香」教案與評量單</h3>
+                    <p class="text-xs font-bold text-earthy-700 mb-2">請貼至 <a href="https://gemini.google.com/" target="_blank" class="text-earthy-700 underline font-bold">Gemini</a> 或 <a href="https://chatgpt.com/" target="_blank" class="text-earthy-700 underline font-bold">ChatGPT</a>：</p>
+                    <pre id="prompt-2-1" class="bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">你是一位國小食農教育專家。請依據農糧署「食米學園」計畫精神，為國小三年級設計一份 40 分鐘的食育教案。
+【主題】：傳統爆米香與現代國產糙米營養
+【需求】：
+1. 教學目標：理解國產糙米營養價值（高纖、維生素B群）與爆米香傳統文化。
+2. 流程：包含 10 分鐘引起動機、20 分鐘核心知識與 10 分鐘互動體驗。
+3. 請附上 3 題適合國小生回答的多層次選擇題（含解析），作為課後學習單。</pre>
+                </div>
+            </div>
+
+            <!-- Card 2: Dietitian -->
+            <div class="bg-card-warm rounded-3xl p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-black px-3 py-1.5 bg-peach-200 text-earthy-900 rounded-lg border border-chestnut-200">
+                            指令 2｜營養師組 (菜單與廣播)
+                        </span>
+                        <button onclick="copyText('prompt-2-2')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-sm font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs active:scale-95">
+                            <i class="fa-solid fa-clone"></i> 一鍵複製
+                        </button>
+                    </div>
+                    <h3 class="font-black text-lg text-earthy-900">生成「學校午餐菜單與午餐播音稿」</h3>
+                    <p class="text-xs font-bold text-earthy-700 mb-2">請貼至 <a href="https://gemini.google.com/" target="_blank" class="text-earthy-700 underline font-bold">Gemini</a> 或 <a href="https://chatgpt.com/" target="_blank" class="text-earthy-700 underline font-bold">ChatGPT</a>：</p>
+                    <pre id="prompt-2-2" class="bg-peach-50/70 p-4 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">你是一位學校午餐營養師。請依據教育部國小午餐營養基準與農糧署地產地消政策，幫我設計：
+1. 一週 5 天的學校午餐菜單，每天需融入一種國產米/雜糧米（如：糙米飯、黑米燉飯、米苔目湯等）。
+2. 請為其中的「國產糙米飯」寫一段 150 字、適合午餐播音時間向學童宣導的「食育小廣播稿」（口吻親切生動）。</pre>
+                </div>
+            </div>
+
+            <!-- Card 3: Gemini NB System Guide -->
+            <div class="bg-card-warm rounded-3xl p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-black px-3 py-1.5 bg-peach-100 text-earthy-900 rounded-lg border border-chestnut-200">
+                            指令 3-1｜<a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-700 hover:text-earthy-900 underline font-black inline-flex items-center gap-1">Gemini Notebook <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                        </span>
+                        <button onclick="copyText('prompt-1-1')" class="bg-earthy-500 hover:bg-earthy-600 text-white text-sm font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs active:scale-95">
+                            <i class="fa-solid fa-clone"></i> 一鍵複製
+                        </button>
+                    </div>
+                    <h3 class="font-black text-lg text-earthy-900"><a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-900 hover:text-earthy-600 underline">Gemini Notebook</a> 系統指南設定</h3>
+                    <p class="text-xs font-bold text-earthy-600 mb-2">請貼至 <a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-700 underline font-bold">Gemini Notebook</a> 的「自訂指南 / 指令」欄位：</p>
+                    <pre id="prompt-1-1" class="bg-peach-50/80 p-4 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">請扮演一位親切熱情的『國小食育老師/米食大師』。請以輕鬆活潑、淺顯易懂的口吻說明內容，對象為 8-12 歲的國小學童。善用生活中的比喻（例如將膳食纖維比喻為『腸道掃把』、將碳水化合物比喻為『身體的電池』），避免使用艱深的專有名詞。若遇到專業數據，請轉化為小朋友能理解的生活情境。</pre>
+                </div>
+            </div>
+
+            <!-- Card 4: Gemini NB Questions -->
+            <div class="bg-card-warm rounded-3xl p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-black px-3 py-1.5 bg-peach-100 text-earthy-900 rounded-lg border border-chestnut-200">
+                            指令 3-2｜<a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-700 hover:text-earthy-900 underline font-black inline-flex items-center gap-1">Gemini Notebook <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+                        </span>
+                        <button onclick="copyText('prompt-1-2')" class="bg-earthy-500 hover:bg-earthy-600 text-white text-sm font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs active:scale-95">
+                            <i class="fa-solid fa-clone"></i> 一鍵複製
+                        </button>
+                    </div>
+                    <h3 class="font-black text-lg text-earthy-900">提煉食米知識庫重點 (問答提詞)</h3>
+                    <p class="text-xs font-bold text-earthy-600 mb-2">請貼至 <a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-700 underline font-bold">Gemini Notebook</a> 的對話框發問：</p>
+                    <pre id="prompt-1-2" class="bg-peach-50/80 p-4 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">請根據我上傳的資料，幫我整理出：
+1. 3 個適合告訴國小學生的「糙米 vs. 白米營養優點比較」（請用小朋友聽得懂的比喻）。
+2. 1 個關於「傳統爆米香文化」的 100 字趣味小故事。
+3. 請以表格呈現蓬萊米與糯米在日常飲食應用上的差異。</pre>
+                </div>
+            </div>
+
+            <!-- Card 5: HeyGen Script -->
+            <div class="bg-card-warm rounded-3xl p-6 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between md:col-span-2">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-black px-3 py-1.5 bg-peach-200 text-earthy-900 rounded-lg border border-chestnut-300">
+                            指令 4｜全組通用 (HeyGen 腳本)
+                        </span>
+                        <button onclick="copyText('prompt-2-3')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-sm font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs active:scale-95">
+                            <i class="fa-solid fa-clone"></i> 一鍵複製
+                        </button>
+                    </div>
+                    <h3 class="font-black text-lg text-earthy-900">生成「1分鐘 HeyGen 短影音宣導腳本」</h3>
+                    <p class="text-xs font-bold text-earthy-700 mb-2">貼至 <a href="https://gemini.google.com/" target="_blank" class="text-earthy-700 underline font-bold">Gemini</a> 或 <a href="https://chatgpt.com/" target="_blank" class="text-earthy-700 underline font-bold">ChatGPT</a>，輸出兩欄式腳本後直接放入 HeyGen：</p>
+                    <pre id="prompt-2-3" class="bg-peach-50/90 p-4 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">請將上述的食育內容，改寫為一段 1 分鐘（約 180 字）的「食米宣導短影音腳本」。
+請格式化輸出，包含兩欄：【畫面視覺指示】與【AI 虛擬主播台詞】。
+主題：為什麼吃國產糙米最健康？
+語氣：熱情、節奏明快、適合國小學生與家長。</pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: GEMINI NB KNOWLEDGE BASE PRACTICE -->
+    <section id="section-nb" class="hidden space-y-8">
+        
+        <!-- Header Banner -->
+        <div class="bg-peach-table text-earthy-900 border-2 border-chestnut-200 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="p-3.5 bg-earthy-500 text-white rounded-2xl shadow-sm shrink-0">
+                    <i class="fa-solid fa-book-bookmark text-2xl"></i>
+                </div>
+                <div>
+                    <h2 class="font-black text-earthy-900 text-xl sm:text-2xl"><a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-700">Gemini Notebook</a> 知識庫實戰</h2>
+                    <p class="text-sm sm:text-base text-earthy-800 mt-0.5">專屬指令範本與設定對話實戰指南</p>
+                </div>
+            </div>
+            <a href="https://notebooklm.google.com/" target="_blank" class="bg-earthy-500 hover:bg-earthy-600 text-white font-bold px-5 py-2.5 rounded-2xl transition flex items-center gap-2 shadow-sm text-sm shrink-0">
+                開啟 <a href="https://notebooklm.google.com/" target="_blank" class="underline text-white">Gemini Notebook</a> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+
+        <!-- 1. Gemini Notebook 自訂筆記本摘要 設定 -->
+        <div class="bg-card-warm rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-chestnut-200 pb-4">
+                <h3 class="text-xl sm:text-2xl font-black text-earthy-900 flex items-center gap-2">
+                    1. <a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-600">Gemini Notebook</a> 自訂筆記本摘要 設定
+                </h3>
+                <p class="text-sm sm:text-base font-medium text-earthy-800 mt-2 leading-relaxed">
+                    為了讓 <a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-700 font-bold underline">Gemini Notebook</a> 能夠更精準地抓取專業資料（如糙米營養、低 GI、爆米香文化），並自動轉化為小朋友聽得懂的語言，建議您可以將指令拆解得更具體一點，加入「年齡層、比喻方式、語氣特色」。
+                </p>
+                <p class="text-xs sm:text-sm font-bold text-earthy-700 mt-2">
+                    以下為您提供 3 種不同層次/用途 的優化備註版本，您可以直接複製或依需求調整：
+                </p>
+            </div>
+
+            <!-- 3 推薦版本 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <!-- 推薦版本 A -->
+                <div class="bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-black bg-earthy-500 text-white px-2.5 py-1 rounded-lg">#推薦版本 A｜萬用版</span>
+                            <button onclick="copyText('nb-rec-a')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-clone"></i> 複製
+                            </button>
+                        </div>
+                        <p class="text-xs text-earthy-700 font-bold mb-2">適合大多數食育場合</p>
+                        <pre id="nb-rec-a" class="bg-white p-3.5 rounded-xl border border-chestnut-200 text-xs sm:text-sm text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">「請扮演一位親切熱情的『國小食育老師/米食大師』。請以輕鬆活潑、淺顯易懂的口吻說明內容，對象為 8-12 歲的國小學童。善用生活中的比喻（例如將膳食纖維比喻為『腸道掃把』、將碳水化合物比喻為『身體的電池』），避免使用艱深的專有名詞。若遇到專業數據，請轉化為小朋友能理解的生活情境。」</pre>
+                    </div>
+                </div>
+
+                <!-- 推薦版本 B -->
+                <div class="bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-black bg-earthy-600 text-white px-2.5 py-1 rounded-lg">#推薦版本 B｜角色故事版</span>
+                            <button onclick="copyText('nb-rec-b')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-clone"></i> 複製
+                            </button>
+                        </div>
+                        <p class="text-xs text-earthy-700 font-bold mb-2">適合想做故事化教案、HeyGen 腳本</p>
+                        <pre id="nb-rec-b" class="bg-white p-3.5 rounded-xl border border-chestnut-200 text-xs sm:text-sm text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">「請用故事化、富有童趣的口吻來說明所有內容，目標是讓國小低中年級學生（約 6-10 歲）能聽得津津有味。語氣請充滿熱情與鼓勵，多使用問答互動（如：『小朋友，你們知道為什麼爆米香會跳舞嗎？』）以及生動的擬人化修辭（例如：『稻米寶寶穿著棕色的外套』）。」</pre>
+                    </div>
+                </div>
+
+                <!-- 推薦版本 C -->
+                <div class="bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-black bg-earthy-700 text-white px-2.5 py-1 rounded-lg">#推薦版本 C｜結構清單版</span>
+                            <button onclick="copyText('nb-rec-c')" class="bg-earthy-600 hover:bg-earthy-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1 shadow-xs">
+                                <i class="fa-solid fa-clone"></i> 複製
+                            </button>
+                        </div>
+                        <p class="text-xs text-earthy-700 font-bold mb-2">適合產出學習單、午餐播音稿</p>
+                        <pre id="nb-rec-c" class="bg-white p-3.5 rounded-xl border border-chestnut-200 text-xs sm:text-sm text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">「請以國小學童易懂的白話文呈現內容，語氣輕鬆親切，並遵守以下原則：
+1. 短句為主： 句子盡量簡短，多用列點（Bullet Points）。
+2. 趣味比喻： 將複雜的營養學知識（如維生素B群、膳食纖維）轉換為趣味比喻。
+3. 生活連結： 連結學生的日常經驗（如：學校午餐、早餐麵包、夜市爆米香）。
+4. 專有名詞轉譯： 第一次出現專有名詞時，必須附帶一句小朋友聽得懂的白話解釋。」</pre>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 💡 小撇步區塊 -->
+            <div class="bg-peach-100 border-2 border-chestnut-200 p-5 rounded-2xl space-y-2 text-earthy-900 shadow-xs">
+                <p class="font-black text-earthy-900 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb text-amber-600 text-xl"></i> 💡 小撇步：
+                </p>
+                <ul class="list-disc list-inside space-y-1.5 text-sm sm:text-base font-medium text-earthy-800">
+                    <li>「知識庫是『嚴謹』的（因為我們餵給它的是農糧署權威資料），但『表達方式』要是『親切』的。」</li>
+                    <li>只要在 <a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-900 font-bold underline">Gemini Notebook</a> 的 Chat 視窗或 Notebook Guide 設定好這個口吻，後面不論是請它生成「爆米香由來故事」、「糙米營養小知識」還是「給小朋友的 30 秒 HeyGen 廣播稿」，<a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-900 font-bold underline">Gemini Notebook</a> 都會自動用這個「國小生聽得懂」的語言輸出，省去老師二次修改的時間！</li>
+                </ul>
+            </div>
+
+            <!-- 範本 : Gemini Notebook「自訂筆記本摘要 -->
+            <div class="pt-4 space-y-4">
+                <h4 class="font-black text-lg text-earthy-900 border-l-4 border-earthy-500 pl-3">
+                    範本 : <a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-600">Gemini Notebook</a>「自訂筆記本摘要」
+                </h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- 範例一 -->
+                    <div class="bg-white p-5 rounded-2xl border border-chestnut-200 shadow-xs space-y-2 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-black text-base text-earthy-900">範例一：兒童營養教育</span>
+                                <button onclick="copyText('nb-sum-ex1')" class="text-xs bg-peach-100 hover:bg-peach-200 text-earthy-900 font-bold px-2.5 py-1 rounded-lg border border-chestnut-200">複製</button>
+                            </div>
+                            <p class="text-xs text-earthy-600 font-bold mb-2">（適用國小/幼兒園）</p>
+                            <div id="nb-sum-ex1" class="text-xs sm:text-sm text-earthy-800 leading-relaxed font-mono bg-peach-50/50 p-3 rounded-xl border border-chestnut-100 space-y-1">
+                                <p><strong>摘要內容：</strong><br>本筆記本為「國小低年級均衡飲食」衛教專題。核心目標是透過「六大類食物變身記」的故事與互動遊戲，引導學童認識每日應攝取的食物種類。內含六大類食物圖卡、互動學習單、以及 15 分鐘的課堂帶動唱教案。</p>
+                                <p><strong>對象：</strong> 幼兒園大班至國小二年級。</p>
+                                <p><strong>重點：</strong> 不偏食、認識全穀雜糧與蔬果。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 範例二 -->
+                    <div class="bg-white p-5 rounded-2xl border border-chestnut-200 shadow-xs space-y-2 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-black text-base text-earthy-900">範例二：校園午餐菜單審查</span>
+                                <button onclick="copyText('nb-sum-ex2')" class="text-xs bg-peach-100 hover:bg-peach-200 text-earthy-900 font-bold px-2.5 py-1 rounded-lg border border-chestnut-200">複製</button>
+                            </div>
+                            <p class="text-xs text-earthy-600 font-bold mb-2">（適用營養師與團膳管理）</p>
+                            <div id="nb-sum-ex2" class="text-xs sm:text-sm text-earthy-800 leading-relaxed font-mono bg-peach-50/50 p-3 rounded-xl border border-chestnut-100 space-y-1">
+                                <p><strong>摘要內容：</strong><br>本筆記本彙整 115 學年度第一學期「校園午餐菜單規劃與審查標準」。內容包含教育部最新午餐食物份量指標、在地食材（三章一Q）採購比例規範、以及常見校園過敏原（如：甲殼類、花生）的替代食材方案。</p>
+                                <p><strong>對象：</strong> 學校營養師、團膳廚務督導。</p>
+                                <p><strong>重點：</strong> 合規性審查、成本控制、營養素達標率。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 範例三 -->
+                    <div class="bg-white p-5 rounded-2xl border border-chestnut-200 shadow-xs space-y-2 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-black text-base text-earthy-900">範例三：社區長者營養衛教</span>
+                                <button onclick="copyText('nb-sum-ex3')" class="text-xs bg-peach-100 hover:bg-peach-200 text-earthy-900 font-bold px-2.5 py-1 rounded-lg border border-chestnut-200">複製</button>
+                            </div>
+                            <p class="text-xs text-earthy-600 font-bold mb-2">（適用樂齡推廣）</p>
+                            <div id="nb-sum-ex3" class="text-xs sm:text-sm text-earthy-800 leading-relaxed font-mono bg-peach-50/50 p-3 rounded-xl border border-chestnut-100 space-y-1">
+                                <p><strong>摘要內容：</strong><br>本筆記本針對「銀髮族肌少症預防」進行飲食衛教設計。重點在於如何透過日常飲食調整，輕鬆增加優質蛋白質與維生素 D 的攝取，並包含「質地軟化飲食」的烹調技巧與社區宣導簡報。</p>
+                                <p><strong>對象：</strong> 社區長者、樂齡中心志工、照顧者。</p>
+                                <p><strong>重點：</strong> 蛋白質定量（每餐一掌心）、質地調整（軟質、舌頭壓碎級）。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Gemini Notebook「 設定對話」 -->
+        <div class="bg-card-warm rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-chestnut-200 pb-4">
+                <h3 class="text-xl sm:text-2xl font-black text-earthy-900 flex items-center gap-2">
+                    2. <a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-600">Gemini Notebook</a>「 設定對話」
+                </h3>
+                <p class="text-sm sm:text-base font-medium text-earthy-800 mt-2 leading-relaxed">
+                    這是控制 AI 回答風格、限制檢索範圍以及提升資料搜尋精確度最關鍵的地方！<br>
+                    為了確保 AI 「精準引用 QA 資料庫」、「不胡思亂想/不捏造數據」，並能根據不同受眾（例如：學校老師、家長或學員）提供合適的語氣，我們需要在 Prompt 中寫入以下 4 個核心要素：
+                </p>
+
+                <!-- 4 核心要素清單 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-sm font-bold text-earthy-900">
+                    <div class="bg-peach-100 p-3 rounded-xl border border-chestnut-200 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-earthy-500 text-white flex items-center justify-center text-xs shrink-0">1</span>
+                        <span>角色與目標： 設定 AI 為專業學校營養師。</span>
+                    </div>
+                    <div class="bg-peach-100 p-3 rounded-xl border border-chestnut-200 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-earthy-500 text-white flex items-center justify-center text-xs shrink-0">2</span>
+                        <span>嚴格來源限制： 要求答案必須百分之百出自置入的 QA 檔案（避免幻覺）。</span>
+                    </div>
+                    <div class="bg-peach-100 p-3 rounded-xl border border-chestnut-200 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-earthy-500 text-white flex items-center justify-center text-xs shrink-0">3</span>
+                        <span>資料檢索與引用規則： 規定必須標註對應的 QA-XX 編號，搜尋精確度最高。</span>
+                    </div>
+                    <div class="bg-peach-100 p-3 rounded-xl border border-chestnut-200 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-earthy-500 text-white flex items-center justify-center text-xs shrink-0">4</span>
+                        <span>輸出結構： 要求先給出核心解答，再給出教學應用建議。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例一、二、三 -->
+            <div class="space-y-6">
+                
+                <!-- 案例一 -->
+                <div class="bg-peach-50/70 border-2 border-chestnut-200 rounded-3xl p-6 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-chestnut-200/80 pb-3">
+                        <div>
+                            <span class="text-xs font-black bg-earthy-500 text-white px-3 py-1 rounded-md">案例一</span>
+                            <h4 class="font-black text-lg sm:text-xl text-earthy-900 inline-block ml-2">【小三專用】米食魔法小精靈</h4>
+                        </div>
+                        <button onclick="copyText('nb-prompt-case1')" class="bg-earthy-600 hover:bg-earthy-700 text-white font-bold text-sm px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-copy"></i> 複製此 Prompt
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm text-earthy-700 font-bold">
+                        <strong>適用情境：</strong> 這是一個專為小學三年級孩子設計的 NotebookLM 對話設定 Prompt 案例。小三的孩子（約 8-9 歲）開始具備自主閱讀能力，但需要活潑、有故事感、句型簡單且充滿鼓勵的語言。
+                    </p>
+                    <pre id="nb-prompt-case1" class="bg-white p-4.5 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">你是一位住在「米食王國」的親切魔法小精靈「米米」，專門用簡單有趣的故事，回答國小三年級小朋友關於米飯與健康營養的問題。
+
+請嚴格遵守以下回答規則：
+1. 【小三語氣】：說話要親切溫柔，像大哥哥/大姐姐，多使用「哇！」、「你知道嗎？」等活潑語氣，避免太長的句子。
+2. 【資料精確度】：你的所有答案都必須 100% 來自上傳的《國小食育與米穀營養 QA 知識庫》檔案。如果檔案裡沒有寫，請誠實說：「這個魔法知識米米還在學習中，等我問問營養師再告訴你喔！」不可以自己亂編故事。
+3. 【將難懂詞彙變簡單】：
+ - 把「膳食纖維」解釋為「幫肚子做掃地做運動的小刷子」。
+ - 把「維生素 B 群」解釋為「給身體補充能量的活力小電池」。
+ - 把「碳水化合物」解釋為「讓大腦聰明運作的超級汽油」。
+4. 【固定回答格式】：
+ - 魔法解答：用 2-3 句簡單白話回答小朋友的問題。
+ - 米米的棒棒卡：給小朋友一句讚美或鼓勵。</pre>
+                </div>
+
+                <!-- 案例二 -->
+                <div class="bg-peach-50/70 border-2 border-chestnut-200 rounded-3xl p-6 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-chestnut-200/80 pb-3">
+                        <div>
+                            <span class="text-xs font-black bg-earthy-600 text-white px-3 py-1 rounded-md">案例二</span>
+                            <h4 class="font-black text-lg sm:text-xl text-earthy-900 inline-block ml-2">【精準檢索型】給教師、營養師夥伴查詢專用的專業 AI 助教</h4>
+                        </div>
+                        <button onclick="copyText('nb-prompt-case2')" class="bg-earthy-600 hover:bg-earthy-700 text-white font-bold text-sm px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-copy"></i> 複製此 Prompt
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm text-earthy-700 font-bold">
+                        <strong>適用情境：</strong> 提供給同事、教職員、營養師夥伴快速查詢資料，要求高度精確、條理清晰、嚴格附帶 QA 編號。
+                    </p>
+                    <pre id="nb-prompt-case2" class="bg-white p-4.5 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">你是一位專業的國小學校營養師，專門協助教職員與營養師夥伴解答關於「國小食育」與「穀物米食營養」的疑問。
+
+請嚴格遵守以下對話與檢索規則：
+1. 【嚴格依據來源】：所有回答必須 100% 來自匯入的《國小食育與米穀營養QA知識庫》。若問題不在知識庫中，請誠實回答：「非常抱歉，目前知識庫中尚無此項紀錄，建議諮詢專業營養師或參考農糧署資料。」切勿自行編造答案。
+2. 【標註 QA 編號】：回答時，必須在引用內容後方註明對應的原始編號（例如：[來源：QA-01] 或 [來源：QA-15]），以確保資料可追溯性。
+3. 【結構化輸出】：
+ - 核心解答：精準簡潔回答問題重點（100-150字）。
+ - 食育教學應用標籤：提供可以直接拿去教學生或家長的「重點標籤/口訣」。
+ - 資料來源編號：標註參考的 QA 編號。</pre>
+                </div>
+
+                <!-- 案例三 -->
+                <div class="bg-peach-50/70 border-2 border-chestnut-200 rounded-3xl p-6 space-y-3">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-chestnut-200/80 pb-3">
+                        <div>
+                            <span class="text-xs font-black bg-earthy-700 text-white px-3 py-1 rounded-md">案例三</span>
+                            <h4 class="font-black text-lg sm:text-xl text-earthy-900 inline-block ml-2">【親切互動型】給國小學生家長與一般學員查詢的食育小幫手</h4>
+                        </div>
+                        <button onclick="copyText('nb-prompt-case3')" class="bg-earthy-600 hover:bg-earthy-700 text-white font-bold text-sm px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-copy"></i> 複製此 Prompt
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm text-earthy-700 font-bold">
+                        <strong>適用情境：</strong> 提供給家長、國小學生或參與食育講座的學員，語氣更加親切溫暖、淺顯易懂、融入實用小技巧。
+                    </p>
+                    <pre id="nb-prompt-case3" class="bg-white p-4.5 rounded-2xl border border-chestnut-200 text-sm sm:text-base text-earthy-900 font-mono whitespace-pre-wrap leading-relaxed">你是一位親切、溫暖的「米食食育小助理」，專為國小家長與學員解答小朋友長高、米飯營養與飲食習慣的疑問。
+
+請遵守以下對話與檢索原則以確保資料精確度：
+1. 【精準引用知識庫】：你的回答基礎必須完全來自匯入的《國小食育與米穀營養QA知識庫》。請勿提供知識庫未提及的偏方或錯誤醫療資訊。
+2. 【白話親切語氣】：將專有名詞轉換為一般家長與小朋友聽得懂的口語（例如將「支鏈澱粉」轉化為「煮熟後黏性強、較有嚼勁的澱粉」）。
+3. 【回答結構】：
+ - 營養師小提醒：用 2-3 句話溫馨解答家長的疑慮。
+ - 實用小撇步：提供生活中或煮飯時可以直接操作的技巧（如浸泡時間、配飯比例等）。
+ - 知識庫對應編號：（括號標註 QA-XX，方便查核）。</pre>
+                </div>
+
+            </div>
+
+            <!-- 💡 小撇步： (結尾) -->
+            <div class="bg-peach-100 p-5 rounded-2xl border-2 border-chestnut-200 space-y-2 text-earthy-900">
+                <p class="font-black text-earthy-900 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb text-amber-600 text-xl"></i> 💡 小撇步：
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-sm sm:text-base font-bold text-earthy-800">
+                    <li><strong>加強「否定提示」</strong> ： 加上 「若資料庫沒有，請直接說不知道，不要自己算或猜」，能完全杜絕 AI 亂回答（AI 幻覺）。</li>
+                    <li><strong>要求「對應 QA 編號」</strong>： 只要要求 AI 輸出 QA-XX，<a href="https://notebooklm.google.com/" target="_blank" class="text-earthy-900 font-bold underline">Gemini Notebook</a> 就會在背景做向量比對，將檢索精確度拉到最高！</li>
+                    <li><strong>多利用「食育重點標籤」</strong>： 因為 Excel 裡有專門的「食育推廣標籤」欄位，在對話設定中提醒 AI 「請特別參考食育標籤欄位」，產出的講義口訣會非常漂亮！</li>
+                </ol>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 4: PROMPT BUILDER -->
+    <section id="section-builder" class="hidden space-y-8">
+        <div class="bg-card-warm rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div class="border-b border-chestnut-200 pb-4">
+                <h2 class="text-xl sm:text-2xl font-black text-earthy-900 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-earthy-500"></i> Custom Prompt Builder萬用指令動態生成器
+                </h2>
+                <p class="text-sm sm:text-base font-medium text-earthy-800 mt-1">自由調整參數，為您的課堂與午餐設計自動組裝專屬的 Prompt 指令！</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 text-base font-bold text-earthy-900">
+                <div>
+                    <label class="block mb-2 text-earthy-900">1. 角色身份</label>
+                    <select id="builder-role" onchange="generateCustomPrompt()" class="w-full bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-3 text-earthy-900 focus:ring-2 focus:ring-earthy-500 outline-none text-base">
+                        <option value="國小食農教育專家">國小食農教育專家 (教師)</option>
+                        <option value="學校午餐團膳營養師">學校午餐團膳營養師</option>
+                        <option value="農糧署食米推廣講師">農糧署食米推廣講師</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block mb-2 text-earthy-900">2. 目標年級/受眾</label>
+                    <select id="builder-grade" onchange="generateCustomPrompt()" class="w-full bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-3 text-earthy-900 focus:ring-2 focus:ring-earthy-500 outline-none text-base">
+                        <option value="國小低年級(一~二年級)">國小低年級 (一~二年級)</option>
+                        <option value="國小中年級(三~四年級)" selected>國小中年級 (三~四年級)</option>
+                        <option value="國小高年級(五~六年級)">國小高年級 (五~六年級)</option>
+                        <option value="全校師生與家長">全校師生與家長</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block mb-2 text-earthy-900">3. 食米專題主題</label>
+                    <select id="builder-topic" onchange="generateCustomPrompt()" class="w-full bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-3 text-earthy-900 focus:ring-2 focus:ring-earthy-500 outline-none text-base">
+                        <option value="國產糙米營養與爆米香傳統文化" selected>國產糙米營養與爆米香文化</option>
+                        <option value="黑米與紫米之膳食纖維與花青素">黑米與紫米之膳食纖維與花青素</option>
+                        <option value="蓬萊米、秈米與糯米特性對比及手作體驗">蓬萊米/秈米/糯米特性及米食手作</option>
+                        <option value="低碳地產地消與國產米食永續價值">低碳地產地消與國產米食永續</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block mb-2 text-earthy-900">4. 預期產出格式</label>
+                    <select id="builder-output" onchange="generateCustomPrompt()" class="w-full bg-peach-50/80 border-2 border-chestnut-200 rounded-2xl p-3 text-earthy-900 focus:ring-2 focus:ring-earthy-500 outline-none text-base">
+                        <option value="40分鐘完整教案與3題互動選擇題學習單">40分鐘教案 + 互動學習單</option>
+                        <option value="一週5天學校午餐菜單與150字廣播稿">一週學校午餐菜單 + 廣播稿</option>
+                        <option value="1分鐘HeyGen兩欄式短影音腳本">1分鐘 HeyGen 短影音腳本</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Custom Prompt Result Output -->
+            <div class="bg-earthy-900 text-peach-50 rounded-3xl p-6 space-y-3 shadow-md">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm font-black text-peach-200 flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> 生成結果 (Generated Prompt)
+                    </span>
+                    <button onclick="copyText('custom-prompt-output')" class="bg-earthy-500 hover:bg-earthy-400 text-white font-black text-sm px-4 py-2 rounded-xl transition flex items-center gap-1.5 active:scale-95 shadow-sm">
+                        <i class="fa-solid fa-copy"></i> 複製此 Prompt
+                    </button>
+                </div>
+                <pre id="custom-prompt-output" class="text-base font-mono whitespace-pre-wrap leading-relaxed text-peach-100 bg-earthy-800/90 p-5 rounded-2xl border border-earthy-700"></pre>
+            </div>
+
+            <!-- 課程總結： 3 Key Takeaways -->
+            <div class="mt-8 pt-8 border-t-2 border-chestnut-200/80 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-earthy-500 text-white flex items-center justify-center font-bold text-xl shadow-xs">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-earthy-900">📌 課程總結： 3 Key Takeaways</h3>
+                        <p class="text-xs sm:text-sm font-bold text-earthy-800">課後落實食米學園計畫的核心心法與行動指南</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <!-- Takeaway 1 -->
+                    <div class="bg-peach-50/80 border-2 border-chestnut-200 p-5 rounded-2xl shadow-xs space-y-2 hover:border-earthy-500 transition">
+                        <div class="flex items-center gap-2 text-earthy-900 font-black text-lg">
+                            <span class="w-7 h-7 bg-earthy-500 text-white rounded-lg flex items-center justify-center text-sm font-black shadow-xs">1</span>
+                            <span>心法高於工具</span>
+                        </div>
+                        <p class="text-sm sm:text-base text-earthy-900 font-medium leading-relaxed">
+                            老師與營養師是品質的最後決策者。AI 是 10x 增效助理，精準的飲食營養與溫暖的課堂教學永遠需要人的專業把關。
+                        </p>
+                    </div>
+
+                    <!-- Takeaway 2 -->
+                    <div class="bg-peach-50/80 border-2 border-chestnut-200 p-5 rounded-2xl shadow-xs space-y-2 hover:border-earthy-500 transition">
+                        <div class="flex items-center gap-2 text-earthy-900 font-black text-lg">
+                            <span class="w-7 h-7 bg-earthy-600 text-white rounded-lg flex items-center justify-center text-sm font-black shadow-xs">2</span>
+                            <span>工作流串聯</span>
+                        </div>
+                        <p class="text-sm sm:text-base text-earthy-900 font-medium leading-relaxed">
+                            建立一條龍高效產出流程：<br>
+                            1️⃣ <strong><a href="https://chatgpt.com/" target="_blank" class="underline hover:text-earthy-700">ChatGPT</a> / <a href="https://gemini.google.com/" target="_blank" class="underline hover:text-earthy-700">Gemini</a> 寫內容</strong>（快速生成教案、學習單與午餐菜單）<br>
+                            2️⃣ <strong><a href="https://notebooklm.google.com/" target="_blank" class="underline hover:text-earthy-700">Gemini Notebook</a> 餵檔案打底</strong>（確保資料正確不瞎編）<br>
+                            3️⃣ <strong>HeyGen 變虛擬主播短片</strong>（將文字一鍵轉為 1 分鐘生動宣導影音）。
+                        </p>
+                    </div>
+
+                    <!-- Takeaway 3 -->
+                    <div class="bg-peach-50/80 border-2 border-chestnut-200 p-5 rounded-2xl shadow-xs space-y-2 hover:border-earthy-500 transition">
+                        <div class="flex items-center gap-2 text-earthy-900 font-black text-lg">
+                            <span class="w-7 h-7 bg-earthy-700 text-white rounded-lg flex items-center justify-center text-sm font-black shadow-xs">3</span>
+                            <span>食米永續向下扎根</span>
+                        </div>
+                        <p class="text-sm sm:text-base text-earthy-900 font-medium leading-relaxed">
+                            結合農糧署「食米學園」精神與在地文化，用生動的 AI 短影音與互動教案，讓學童愛上國產米，深化食農教育成果。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-6 right-6 bg-earthy-900 text-peach-100 border border-chestnut-300 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 z-50 text-base font-bold opacity-0 pointer-events-none transform translate-y-4">
+    <i class="fa-solid fa-circle-check text-peach-300 text-xl"></i>
+    <span id="toast-message">已成功複製到剪貼簿！</span>
+</div>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-chestnut-200 py-6 text-center text-sm font-semibold text-earthy-800 mt-auto shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+        <p>AI數位助教 AI 輔助教學工作台 • 農業部農糧署 指導 • 臺灣穀物產業發展協會 主辦</p>
+        <p class="text-xs text-earthy-700">專為學校教師與營養師設計之實戰研習工具系統</p>
+        <p class="text-xs text-earthy-600 pt-1 font-normal">© 財團法人育秀教育基金會 版權所有，未經授權請勿轉載或重製</p>
+    </div>
+</footer>
+
+<script>
+    /* State Variables */
+    window.onload = function() {
+        generateCustomPrompt();
+        loadChecklistState();
+    };
+
+    function switchTab(tabId) {
+        currentTab = tabId;
+        const tabs = ['agenda', 'prompts', 'nb', 'builder'];
+        tabs.forEach(t => {
+            const btn = document.getElementById(`tab-${t}`);
+            const section = document.getElementById(`section-${t}`);
+            if (t === tabId) {
+                btn.classList.add('active');
+                btn.classList.remove('text-earthy-800', 'hover:bg-peach-100');
+                section.classList.remove('hidden');
+            } else {
+                btn.classList.remove('active');
+                btn.classList.add('text-earthy-800', 'hover:bg-peach-100');
+                section.classList.add('hidden');
+            }
+        });
+    }
+
+    function copyText(elementId) {
+        const el = document.getElementById(elementId);
+        const textToCopy = el.innerText || el.textContent;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast('已成功複製到剪貼簿！');
+            }).catch(() => {
+                fallbackCopy(textToCopy);
+            });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    }
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            showToast('已成功複製到剪貼簿！');
+        } catch (err) {
+            showToast('複製失敗，請手動選取文字複製。');
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').textContent = msg;
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        }, 2200);
+    }
+
+    function updateChecklist() {
+        const checkboxes = document.querySelectorAll('.checklist-item');
+        let count = 0;
+        const states = [];
+        checkboxes.forEach((cb) => {
+            if (cb.checked) count++;
+            states.push(cb.checked);
+        });
+        document.getElementById('checklist-counter').textContent = `${count} / ${checkboxes.length} 已完成`;
+        localStorage.setItem('rice_ai_checklist_v4', JSON.stringify(states));
+    }
+
+    function loadChecklistState() {
+        const saved = JSON.parse(localStorage.getItem('rice_ai_checklist_v4'));
+        if (saved && Array.isArray(saved)) {
+            const checkboxes = document.querySelectorAll('.checklist-item');
+            checkboxes.forEach((cb, i) => {
+                if (saved[i]) cb.checked = true;
+            });
+            updateChecklist();
+        }
+    }
+
+    function generateCustomPrompt() {
+        const role = document.getElementById('builder-role').value;
+        const grade = document.getElementById('builder-grade').value;
+        const topic = document.getElementById('builder-topic').value;
+        const output = document.getElementById('builder-output').value;
+
+        const promptText = `你是一位專業的${role}。請依據農糧署「食米學園」計畫精神與地產地消理念，為【${grade}】設計內容。
+
+【專題主題】：${topic}
+【預期產出】：${output}
+
+【詳細要求】：
+1. 內容需具備科學準確性（含現代米食營養新知，如膳食纖維、維生素B群與高纖低GI特性）。
+2. 口吻需符合受眾年齡層，語氣生動親切，善用趣味生活比喻。
+3. 嚴格符合臺灣國產稻米在地農業推廣之核心宗旨。`;
+
+        document.getElementById('custom-prompt-output').textContent = promptText;
+    }
+</script>
+</body>
+</html>
